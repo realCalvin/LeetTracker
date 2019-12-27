@@ -1,0 +1,16 @@
+type Set @model {
+  id: ID!
+  title: String!
+  Problems: [Problem] @connection(name: "SetProblems")
+}
+type Problem @model {
+  id: ID!
+  name: String!
+  set: Set @connection(name: "SetProblems")
+  comments: [Comment] @connection(name: "ProblemComments")
+}
+type Comment @model {
+  id: ID!
+  content: String
+  problem: Problem @connection(name: "ProblemComments")
+}

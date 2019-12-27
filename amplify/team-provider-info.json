@@ -1,0 +1,22 @@
+{
+    "project": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-leetcode-project-213551-authRole",
+            "UnauthRoleArn": "arn:aws:iam::222496626012:role/amplify-leetcode-project-213551-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::222496626012:role/amplify-leetcode-project-213551-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-leetcode-project-213551-deployment",
+            "UnauthRoleName": "amplify-leetcode-project-213551-unauthRole",
+            "StackName": "amplify-leetcode-project-213551",
+            "StackId": "arn:aws:cloudformation:us-west-2:222496626012:stack/amplify-leetcode-project-213551/c3157830-286a-11ea-ad70-06c1882c17fc",
+            "AmplifyAppId": "d2u3ipnfo8ttzm"
+        },
+        "categories": {
+            "auth": {
+                "leetcoded9838bac": {
+                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"2706961049391840\",\"client_secret\":\"6d0c0583ac2ee0dd4f57791a842f8607\"},{\"ProviderName\":\"Google\",\"client_id\":\"214909691900-3le5et5p06n6nuv9qnmocsuk6hjv0nr7.apps.googleusercontent.com\",\"client_secret\":\"IIoQwrKFMrfVpXnbqLBz6S3w\"}]"
+                }
+            }
+        }
+    }
+}
