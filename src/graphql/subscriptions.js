@@ -5,7 +5,8 @@ export const onCreateSet = `subscription OnCreateSet {
   onCreateSet {
     id
     title
-    Problems {
+    company
+    problems {
       items {
         id
         name
@@ -19,7 +20,8 @@ export const onUpdateSet = `subscription OnUpdateSet {
   onUpdateSet {
     id
     title
-    Problems {
+    company
+    problems {
       items {
         id
         name
@@ -33,7 +35,8 @@ export const onDeleteSet = `subscription OnDeleteSet {
   onDeleteSet {
     id
     title
-    Problems {
+    company
+    problems {
       items {
         id
         name
@@ -50,7 +53,8 @@ export const onCreateProblem = `subscription OnCreateProblem {
     set {
       id
       title
-      Problems {
+      company
+      problems {
         nextToken
       }
     }
@@ -71,7 +75,8 @@ export const onUpdateProblem = `subscription OnUpdateProblem {
     set {
       id
       title
-      Problems {
+      company
+      problems {
         nextToken
       }
     }
@@ -92,7 +97,8 @@ export const onDeleteProblem = `subscription OnDeleteProblem {
     set {
       id
       title
-      Problems {
+      company
+      problems {
         nextToken
       }
     }
@@ -116,6 +122,7 @@ export const onCreateComment = `subscription OnCreateComment {
       set {
         id
         title
+        company
       }
       comments {
         nextToken
@@ -134,6 +141,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
       set {
         id
         title
+        company
       }
       comments {
         nextToken
@@ -152,6 +160,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
       set {
         id
         title
+        company
       }
       comments {
         nextToken

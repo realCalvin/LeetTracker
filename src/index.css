@@ -1,4 +1,6 @@
 body {
+  overflow-x: hidden;
+  padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,4 +12,25 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.navbar-link{
+  color: grey;
+  padding: 0px 10px;
+}
+.navbar-link:hover{
+  text-decoration: none;
+  color: rgb(172, 172, 172);
+}
+
+.input-group {
+  width: 40%;
+}
+
+.card {
+  text-align: center;
+  margin: 8px;
+}
+#card-row {
+  justify-content: center;
 }

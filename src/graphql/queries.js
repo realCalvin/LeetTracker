@@ -5,7 +5,8 @@ export const getSet = `query GetSet($id: ID!) {
   getSet(id: $id) {
     id
     title
-    Problems {
+    company
+    problems {
       items {
         id
         name
@@ -20,7 +21,8 @@ export const listSets = `query ListSets($filter: ModelSetFilterInput, $limit: In
     items {
       id
       title
-      Problems {
+      company
+      problems {
         nextToken
       }
     }
@@ -35,7 +37,8 @@ export const getProblem = `query GetProblem($id: ID!) {
     set {
       id
       title
-      Problems {
+      company
+      problems {
         nextToken
       }
     }
@@ -61,6 +64,7 @@ export const listProblems = `query ListProblems(
       set {
         id
         title
+        company
       }
       comments {
         nextToken
@@ -80,6 +84,7 @@ export const getComment = `query GetComment($id: ID!) {
       set {
         id
         title
+        company
       }
       comments {
         nextToken

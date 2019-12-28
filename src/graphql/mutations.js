@@ -8,7 +8,8 @@ export const createSet = `mutation CreateSet(
   createSet(input: $input, condition: $condition) {
     id
     title
-    Problems {
+    company
+    problems {
       items {
         id
         name
@@ -25,7 +26,8 @@ export const updateSet = `mutation UpdateSet(
   updateSet(input: $input, condition: $condition) {
     id
     title
-    Problems {
+    company
+    problems {
       items {
         id
         name
@@ -42,7 +44,8 @@ export const deleteSet = `mutation DeleteSet(
   deleteSet(input: $input, condition: $condition) {
     id
     title
-    Problems {
+    company
+    problems {
       items {
         id
         name
@@ -62,7 +65,8 @@ export const createProblem = `mutation CreateProblem(
     set {
       id
       title
-      Problems {
+      company
+      problems {
         nextToken
       }
     }
@@ -86,7 +90,8 @@ export const updateProblem = `mutation UpdateProblem(
     set {
       id
       title
-      Problems {
+      company
+      problems {
         nextToken
       }
     }
@@ -110,7 +115,8 @@ export const deleteProblem = `mutation DeleteProblem(
     set {
       id
       title
-      Problems {
+      company
+      problems {
         nextToken
       }
     }
@@ -137,6 +143,7 @@ export const createComment = `mutation CreateComment(
       set {
         id
         title
+        company
       }
       comments {
         nextToken
@@ -158,6 +165,7 @@ export const updateComment = `mutation UpdateComment(
       set {
         id
         title
+        company
       }
       comments {
         nextToken
@@ -179,6 +187,7 @@ export const deleteComment = `mutation DeleteComment(
       set {
         id
         title
+        company
       }
       comments {
         nextToken

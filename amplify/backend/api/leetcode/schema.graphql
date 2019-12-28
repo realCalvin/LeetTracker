@@ -1,7 +1,8 @@
 type Set @model {
   id: ID!
   title: String!
-  Problems: [Problem] @connection(name: "SetProblems")
+  company: String
+  problems: [Problem] @connection(name: "SetProblems")
 }
 type Problem @model {
   id: ID!
@@ -11,6 +12,6 @@ type Problem @model {
 }
 type Comment @model {
   id: ID!
-  content: String
+  content: String!
   problem: Problem @connection(name: "ProblemComments")
 }
