@@ -10,6 +10,17 @@ export const onCreateSet = `subscription OnCreateSet {
       items {
         id
         name
+        url
+        level
+        key
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        author
+        content
       }
       nextToken
     }
@@ -25,6 +36,17 @@ export const onUpdateSet = `subscription OnUpdateSet {
       items {
         id
         name
+        url
+        level
+        key
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        author
+        content
       }
       nextToken
     }
@@ -40,6 +62,17 @@ export const onDeleteSet = `subscription OnDeleteSet {
       items {
         id
         name
+        url
+        level
+        key
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        author
+        content
       }
       nextToken
     }
@@ -50,6 +83,9 @@ export const onCreateProblem = `subscription OnCreateProblem {
   onCreateProblem {
     id
     name
+    url
+    level
+    key
     set {
       id
       title
@@ -57,13 +93,9 @@ export const onCreateProblem = `subscription OnCreateProblem {
       problems {
         nextToken
       }
-    }
-    comments {
-      items {
-        id
-        content
+      comments {
+        nextToken
       }
-      nextToken
     }
   }
 }
@@ -72,6 +104,9 @@ export const onUpdateProblem = `subscription OnUpdateProblem {
   onUpdateProblem {
     id
     name
+    url
+    level
+    key
     set {
       id
       title
@@ -79,13 +114,9 @@ export const onUpdateProblem = `subscription OnUpdateProblem {
       problems {
         nextToken
       }
-    }
-    comments {
-      items {
-        id
-        content
+      comments {
+        nextToken
       }
-      nextToken
     }
   }
 }
@@ -94,6 +125,9 @@ export const onDeleteProblem = `subscription OnDeleteProblem {
   onDeleteProblem {
     id
     name
+    url
+    level
+    key
     set {
       id
       title
@@ -101,13 +135,9 @@ export const onDeleteProblem = `subscription OnDeleteProblem {
       problems {
         nextToken
       }
-    }
-    comments {
-      items {
-        id
-        content
+      comments {
+        nextToken
       }
-      nextToken
     }
   }
 }
@@ -115,14 +145,14 @@ export const onDeleteProblem = `subscription OnDeleteProblem {
 export const onCreateComment = `subscription OnCreateComment {
   onCreateComment {
     id
+    author
     content
-    problem {
+    set {
       id
-      name
-      set {
-        id
-        title
-        company
+      title
+      company
+      problems {
+        nextToken
       }
       comments {
         nextToken
@@ -134,14 +164,14 @@ export const onCreateComment = `subscription OnCreateComment {
 export const onUpdateComment = `subscription OnUpdateComment {
   onUpdateComment {
     id
+    author
     content
-    problem {
+    set {
       id
-      name
-      set {
-        id
-        title
-        company
+      title
+      company
+      problems {
+        nextToken
       }
       comments {
         nextToken
@@ -153,14 +183,14 @@ export const onUpdateComment = `subscription OnUpdateComment {
 export const onDeleteComment = `subscription OnDeleteComment {
   onDeleteComment {
     id
+    author
     content
-    problem {
+    set {
       id
-      name
-      set {
-        id
-        title
-        company
+      title
+      company
+      problems {
+        nextToken
       }
       comments {
         nextToken

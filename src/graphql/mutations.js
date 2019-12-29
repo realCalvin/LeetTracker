@@ -13,6 +13,17 @@ export const createSet = `mutation CreateSet(
       items {
         id
         name
+        url
+        level
+        key
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        author
+        content
       }
       nextToken
     }
@@ -31,6 +42,17 @@ export const updateSet = `mutation UpdateSet(
       items {
         id
         name
+        url
+        level
+        key
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        author
+        content
       }
       nextToken
     }
@@ -49,6 +71,17 @@ export const deleteSet = `mutation DeleteSet(
       items {
         id
         name
+        url
+        level
+        key
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        author
+        content
       }
       nextToken
     }
@@ -62,6 +95,9 @@ export const createProblem = `mutation CreateProblem(
   createProblem(input: $input, condition: $condition) {
     id
     name
+    url
+    level
+    key
     set {
       id
       title
@@ -69,13 +105,9 @@ export const createProblem = `mutation CreateProblem(
       problems {
         nextToken
       }
-    }
-    comments {
-      items {
-        id
-        content
+      comments {
+        nextToken
       }
-      nextToken
     }
   }
 }
@@ -87,6 +119,9 @@ export const updateProblem = `mutation UpdateProblem(
   updateProblem(input: $input, condition: $condition) {
     id
     name
+    url
+    level
+    key
     set {
       id
       title
@@ -94,13 +129,9 @@ export const updateProblem = `mutation UpdateProblem(
       problems {
         nextToken
       }
-    }
-    comments {
-      items {
-        id
-        content
+      comments {
+        nextToken
       }
-      nextToken
     }
   }
 }
@@ -112,6 +143,9 @@ export const deleteProblem = `mutation DeleteProblem(
   deleteProblem(input: $input, condition: $condition) {
     id
     name
+    url
+    level
+    key
     set {
       id
       title
@@ -119,13 +153,9 @@ export const deleteProblem = `mutation DeleteProblem(
       problems {
         nextToken
       }
-    }
-    comments {
-      items {
-        id
-        content
+      comments {
+        nextToken
       }
-      nextToken
     }
   }
 }
@@ -136,14 +166,14 @@ export const createComment = `mutation CreateComment(
 ) {
   createComment(input: $input, condition: $condition) {
     id
+    author
     content
-    problem {
+    set {
       id
-      name
-      set {
-        id
-        title
-        company
+      title
+      company
+      problems {
+        nextToken
       }
       comments {
         nextToken
@@ -158,14 +188,14 @@ export const updateComment = `mutation UpdateComment(
 ) {
   updateComment(input: $input, condition: $condition) {
     id
+    author
     content
-    problem {
+    set {
       id
-      name
-      set {
-        id
-        title
-        company
+      title
+      company
+      problems {
+        nextToken
       }
       comments {
         nextToken
@@ -180,14 +210,14 @@ export const deleteComment = `mutation DeleteComment(
 ) {
   deleteComment(input: $input, condition: $condition) {
     id
+    author
     content
-    problem {
+    set {
       id
-      name
-      set {
-        id
-        title
-        company
+      title
+      company
+      problems {
+        nextToken
       }
       comments {
         nextToken

@@ -3,15 +3,19 @@ type Set @model {
   title: String!
   company: String
   problems: [Problem] @connection(name: "SetProblems")
+  comments: [Comment] @connection(limit: 50, name: "SetComments")
 }
 type Problem @model {
   id: ID!
   name: String!
+  url: String!
+  level: String!
+  key: String!
   set: Set @connection(name: "SetProblems")
-  comments: [Comment] @connection(name: "ProblemComments")
 }
 type Comment @model {
   id: ID!
+  author: String!
   content: String!
-  problem: Problem @connection(name: "ProblemComments")
+  set: Set @connection(name: "SetComments")
 }

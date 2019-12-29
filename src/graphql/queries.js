@@ -10,6 +10,17 @@ export const getSet = `query GetSet($id: ID!) {
       items {
         id
         name
+        url
+        level
+        key
+      }
+      nextToken
+    }
+    comments {
+      items {
+        id
+        author
+        content
       }
       nextToken
     }
@@ -25,6 +36,9 @@ export const listSets = `query ListSets($filter: ModelSetFilterInput, $limit: In
       problems {
         nextToken
       }
+      comments {
+        nextToken
+      }
     }
     nextToken
   }
@@ -34,6 +48,9 @@ export const getProblem = `query GetProblem($id: ID!) {
   getProblem(id: $id) {
     id
     name
+    url
+    level
+    key
     set {
       id
       title
@@ -41,13 +58,9 @@ export const getProblem = `query GetProblem($id: ID!) {
       problems {
         nextToken
       }
-    }
-    comments {
-      items {
-        id
-        content
+      comments {
+        nextToken
       }
-      nextToken
     }
   }
 }
@@ -61,13 +74,13 @@ export const listProblems = `query ListProblems(
     items {
       id
       name
+      url
+      level
+      key
       set {
         id
         title
         company
-      }
-      comments {
-        nextToken
       }
     }
     nextToken
@@ -77,14 +90,14 @@ export const listProblems = `query ListProblems(
 export const getComment = `query GetComment($id: ID!) {
   getComment(id: $id) {
     id
+    author
     content
-    problem {
+    set {
       id
-      name
-      set {
-        id
-        title
-        company
+      title
+      company
+      problems {
+        nextToken
       }
       comments {
         nextToken
@@ -101,10 +114,12 @@ export const listComments = `query ListComments(
   listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      author
       content
-      problem {
+      set {
         id
-        name
+        title
+        company
       }
     }
     nextToken

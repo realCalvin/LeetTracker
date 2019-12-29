@@ -5,11 +5,12 @@ import {
   InputGroup,
   FormControl,
   Button,
-  Container
+  Jumbotron
 } from "react-bootstrap";
 import DisplayCard from "../components/DisplayCard";
 import data from "../data.json";
 import "../index.css";
+import $ from "jquery";
 
 class CreateSet extends Component {
   state = {
@@ -18,6 +19,12 @@ class CreateSet extends Component {
     problemsPerPage: 54,
     set: []
   };
+  componentDidMount() {
+    if (this.props.location.state === undefined) {
+      this.props.history.push({ pathname: "/create" });
+    }
+    console.log(this.props.location.state);
+  }
   render() {
     // Variables below are used for pagination on the create set page
     const indexOfLastProblem =
@@ -63,6 +70,9 @@ class CreateSet extends Component {
 
     // Function used to add "clicked" LeetCode problem to the user's set
     let addCard = (id, title, url, level) => {
+      // Show checkmark on screen to indicate a problem is added
+      $("#checkmark-div").fadeIn(400);
+      $("#checkmark-div").fadeOut(450);
       let set = this.state.set;
       let duplicate = false;
       // For loop used to check if we are adding a duplicate problem
@@ -112,9 +122,29 @@ class CreateSet extends Component {
 
     return (
       <div className="CreateSet">
-        <Container>
+        {/* Jumbotron displays the current user's set */}
+        <div id="checkmark-div">
+          <i id="checkmark" className="fa fa-check"></i>
+        </div>
+        <Jumbotron>
+          {this.state.set.length ? (
+            ""
+          ) : (
+            <div>
+              <Row className="card-row">
+                <h3>Empty...</h3>
+              </Row>
+              <Row className="card-row">
+                <p>Add problems by clicking on them!</p>
+              </Row>{" "}
+            </div>
+          )}
           <Row className="card-row">
-            <h1>Your Set</h1>
+            {this.state.set.length ? (
+              <h3>{this.props.location.state.title}</h3>
+            ) : (
+              ""
+            )}
           </Row>
           <Row className="card-row">
             {/* Display user's set of problems if length > 0 */}
@@ -138,29 +168,31 @@ class CreateSet extends Component {
               ""
             )}
           </Row>
-          <Row className="card-row">
-            <InputGroup size="sm" className="mb-3">
-              <InputGroup.Prepend>
-                <InputGroup.Text id="inputGroup-sizing-sm">
-                  Search Problem
-                </InputGroup.Text>
-              </InputGroup.Prepend>
-              <FormControl onChange={updateSearch} />
-              <InputGroup.Append>
-                <Button variant="secondary" onClick={updateSearch}>
-                  <i className="fa fa-search"></i>
-                </Button>
-              </InputGroup.Append>
-            </InputGroup>
-          </Row>
-          <Row className="card-row">{filteredProblems}</Row>
-          {/* Pagination is the numbers displayed to navigate through problems */}
+        </Jumbotron>
+        <Row className="card-row">
+          <InputGroup size="sm" className="mb-3">
+            <InputGroup.Prepend>
+              <InputGroup.Text id="inputGroup-sizing-sm">
+                Search Problem
+              </InputGroup.Text>
+            </InputGroup.Prepend>
+            <FormControl onChange={updateSearch} />
+            <InputGroup.Append>
+              <Button variant="secondary" onClick={updateSearch}>
+                <i className="fa fa-search"></i>
+              </Button>
+            </InputGroup.Append>
+          </InputGroup>
+        </Row>
+        <Row className="card-row">{filteredProblems}</Row>
+        <Row className="card-row">
           <Pagination
             problemsPerPage={this.state.problemsPerPage}
             totalProblems={this.state.problems.length}
             paginate={paginate}
           />
-        </Container>
+        </Row>
+        {/* Pagination is the numbers displayed to navigate through problems */}
       </div>
     );
   }
