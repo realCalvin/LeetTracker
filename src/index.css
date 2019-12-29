@@ -36,7 +36,7 @@ code {
 .card:hover {
   cursor: pointer;
 }
-#card-row {
+.card-row {
   justify-content: center;
 }
 .card-level-1 {

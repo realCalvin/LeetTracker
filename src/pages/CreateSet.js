@@ -1,19 +1,13 @@
 import React, { Component } from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
-import Amplify, { Auth } from "aws-amplify";
 import Pagination from "../components/Pagination";
 import {
   Row,
-  Col,
   InputGroup,
   FormControl,
   Button,
-  Card,
-  Container,
-  ButtonToolbar,
-  OverlayTrigger,
-  Tooltip
+  Container
 } from "react-bootstrap";
+import DisplayCard from "../components/DisplayCard";
 import data from "../data.json";
 import "../index.css";
 
@@ -21,7 +15,8 @@ class CreateSet extends Component {
   state = {
     problems: data,
     currentPage: 1,
-    problemsPerPage: 54
+    problemsPerPage: 54,
+    set: []
   };
   render() {
     // Variables below are used for pagination on the create set page
@@ -44,6 +39,7 @@ class CreateSet extends Component {
     let updateSearch = e => {
       let newProblems = [];
       // filter through data
+      // eslint-disable-next-line
       data.filter(problem => {
         let title = problem.title.toLowerCase();
         if (title.includes(e.target.value.toLowerCase())) {
@@ -56,62 +52,109 @@ class CreateSet extends Component {
     };
     // Function used in JSX to display LeetCode difficulty
     let checkLevel = level => {
-      if (level == 1) {
+      if (level === 1) {
         return "Easy";
-      } else if (level == 2) {
+      } else if (level === 2) {
         return "Medium";
       } else {
         return "Hard";
       }
     };
+
+    // Function used to add "clicked" LeetCode problem to the user's set
+    let addCard = (id, title, url, level) => {
+      let set = this.state.set;
+      let duplicate = false;
+      // For loop used to check if we are adding a duplicate problem
+      for (let i = 0; i < set.length; i++) {
+        if (id === set[i].id) {
+          duplicate = true;
+        }
+      }
+      // If not duplicate, add to user's set
+      if (!duplicate) {
+        set.push({ id, title, url, level, completed: false, time: null });
+        this.setState({
+          set: set
+        });
+      } else {
+        console.log("Duplicate");
+      }
+    };
+
+    let removeCard = (id, title, url, level) => {
+      let set = this.state.set;
+      let newSet = [];
+      for (let i = 0; i < set.length; i++) {
+        if (set[i].id !== id) {
+          newSet.push(set[i]);
+        }
+      }
+      this.setState({
+        set: newSet
+      });
+    };
+
     // Mapping out all the problems and displaying as a card
     let filteredProblems = currentProblems.map(problem => (
-      <OverlayTrigger
+      <DisplayCard
         key={problem.id}
-        placement={"top"}
-        overlay={
-          <Tooltip id={`tooltip-${"top"}`}>
-            Click to <strong>add</strong>! (ᵔ▾ᵔ) .
-          </Tooltip>
-        }
-      >
-        <Card
-          bg="light"
-          style={{ width: "18rem" }}
-          key={problem.id}
-          id={problem.id}
-        >
-          <Card.Header className={"card-level-" + problem.level}>
-            {checkLevel(problem.level)}
-          </Card.Header>
-          <Card.Body>
-            <Card.Text>
-              <a href={"https://leetcode.com/problems/" + problem.url}>
-                {problem.title}
-              </a>
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </OverlayTrigger>
+        problem={problem}
+        actionOnCard={addCard}
+        checkLevel={checkLevel}
+        toolMessage="Click to add! (ᵔ▾ᵔ)"
+      />
     ));
+
+    let createSet = () => {
+      console.log(this.state.set);
+    };
 
     return (
       <div className="CreateSet">
         <Container>
-          <Row className="justify-content-md-center">
-            <h1>Create Set</h1>
+          <Row className="card-row">
+            <h1>Your Set</h1>
           </Row>
-          <Row className="justify-content-md-center">
-            <InputGroup className="mb-3">
+          <Row className="card-row">
+            {/* Display user's set of problems if length > 0 */}
+            {this.state.set.length
+              ? this.state.set.map(problem => (
+                  // DisplayCard is the card used to display problems
+                  <DisplayCard
+                    key={problem.id}
+                    problem={problem}
+                    actionOnCard={removeCard}
+                    checkLevel={checkLevel}
+                    toolMessage="Click to remove! (˘▾˘)"
+                  />
+                ))
+              : ""}
+          </Row>
+          <Row className="card-row">
+            {this.state.set.length ? (
+              <Button onClick={createSet}>Create</Button>
+            ) : (
+              ""
+            )}
+          </Row>
+          <Row className="card-row">
+            <InputGroup size="sm" className="mb-3">
+              <InputGroup.Prepend>
+                <InputGroup.Text id="inputGroup-sizing-sm">
+                  Search Problem
+                </InputGroup.Text>
+              </InputGroup.Prepend>
               <FormControl onChange={updateSearch} />
               <InputGroup.Append>
-                <Button variant="outline-secondary" onClick={updateSearch}>
-                  Search
+                <Button variant="secondary" onClick={updateSearch}>
+                  <i className="fa fa-search"></i>
                 </Button>
               </InputGroup.Append>
             </InputGroup>
           </Row>
-          <Row id="card-row">{filteredProblems}</Row>
+          <Row className="card-row">{filteredProblems}</Row>
+          {/* Pagination is the numbers displayed to navigate through problems */}
           <Pagination
             problemsPerPage={this.state.problemsPerPage}
             totalProblems={this.state.problems.length}
