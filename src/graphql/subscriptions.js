@@ -4,21 +4,25 @@
 export const onCreateSet = `subscription OnCreateSet {
   onCreateSet {
     id
+    author
     title
     company
     problems {
       items {
         id
-        name
+        setID
+        title
         url
         level
-        key
+        completed
+        time
       }
       nextToken
     }
     comments {
       items {
         id
+        setID
         author
         content
       }
@@ -30,21 +34,25 @@ export const onCreateSet = `subscription OnCreateSet {
 export const onUpdateSet = `subscription OnUpdateSet {
   onUpdateSet {
     id
+    author
     title
     company
     problems {
       items {
         id
-        name
+        setID
+        title
         url
         level
-        key
+        completed
+        time
       }
       nextToken
     }
     comments {
       items {
         id
+        setID
         author
         content
       }
@@ -56,21 +64,25 @@ export const onUpdateSet = `subscription OnUpdateSet {
 export const onDeleteSet = `subscription OnDeleteSet {
   onDeleteSet {
     id
+    author
     title
     company
     problems {
       items {
         id
-        name
+        setID
+        title
         url
         level
-        key
+        completed
+        time
       }
       nextToken
     }
     comments {
       items {
         id
+        setID
         author
         content
       }
@@ -82,12 +94,15 @@ export const onDeleteSet = `subscription OnDeleteSet {
 export const onCreateProblem = `subscription OnCreateProblem {
   onCreateProblem {
     id
-    name
+    setID
+    title
     url
     level
-    key
+    completed
+    time
     set {
       id
+      author
       title
       company
       problems {
@@ -103,12 +118,15 @@ export const onCreateProblem = `subscription OnCreateProblem {
 export const onUpdateProblem = `subscription OnUpdateProblem {
   onUpdateProblem {
     id
-    name
+    setID
+    title
     url
     level
-    key
+    completed
+    time
     set {
       id
+      author
       title
       company
       problems {
@@ -124,12 +142,15 @@ export const onUpdateProblem = `subscription OnUpdateProblem {
 export const onDeleteProblem = `subscription OnDeleteProblem {
   onDeleteProblem {
     id
-    name
+    setID
+    title
     url
     level
-    key
+    completed
+    time
     set {
       id
+      author
       title
       company
       problems {
@@ -145,10 +166,12 @@ export const onDeleteProblem = `subscription OnDeleteProblem {
 export const onCreateComment = `subscription OnCreateComment {
   onCreateComment {
     id
+    setID
     author
     content
     set {
       id
+      author
       title
       company
       problems {
@@ -164,10 +187,12 @@ export const onCreateComment = `subscription OnCreateComment {
 export const onUpdateComment = `subscription OnUpdateComment {
   onUpdateComment {
     id
+    setID
     author
     content
     set {
       id
+      author
       title
       company
       problems {
@@ -183,10 +208,12 @@ export const onUpdateComment = `subscription OnUpdateComment {
 export const onDeleteComment = `subscription OnDeleteComment {
   onDeleteComment {
     id
+    setID
     author
     content
     set {
       id
+      author
       title
       company
       problems {

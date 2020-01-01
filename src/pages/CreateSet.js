@@ -11,6 +11,8 @@ import DisplayCard from "../components/DisplayCard";
 import data from "../data.json";
 import "../index.css";
 import $ from "jquery";
+import Amplify, { API, graphqlOperation } from "aws-amplify";
+import * as mutations from "../graphql/mutations";
 
 class CreateSet extends Component {
   state = {
@@ -70,9 +72,6 @@ class CreateSet extends Component {
 
     // Function used to add "clicked" LeetCode problem to the user's set
     let addCard = (id, title, url, level) => {
-      // Show checkmark on screen to indicate a problem is added
-      $("#checkmark-div").fadeIn(400);
-      $("#checkmark-div").fadeOut(450);
       let set = this.state.set;
       let duplicate = false;
       // For loop used to check if we are adding a duplicate problem
@@ -83,11 +82,25 @@ class CreateSet extends Component {
       }
       // If not duplicate, add to user's set
       if (!duplicate) {
-        set.push({ id, title, url, level, completed: false, time: null });
+        // Show checkmark on screen to indicate a problem is added
+        $("#checkmark-div").fadeIn(400);
+        $("#checkmark-div").fadeOut(450);
+        set.push({
+          id,
+          title,
+          url,
+          level,
+          completed: false,
+          time: "0",
+          setID: this.props.location.state.setID
+        });
         this.setState({
           set: set
         });
       } else {
+        // Show x mark on screen to indicate a problem is duplicate
+        $("#xmark-div").fadeIn(400);
+        $("#xmark-div").fadeOut(450);
         console.log("Duplicate");
       }
     };
@@ -116,8 +129,35 @@ class CreateSet extends Component {
       />
     ));
 
+    // Creates the user set using mutations from graphql
     let createSet = () => {
       console.log(this.state.set);
+
+      // Data for the current user's set
+      let setData = {
+        id: this.props.location.state.setID,
+        author: this.props.location.state.author,
+        title: this.props.location.state.title,
+        company: this.props.location.state.company
+      };
+      // GraphQL call to push data to AWS DynamoDB
+      API.graphql(graphqlOperation(mutations.createSet, { input: setData }));
+
+      // Connecting the selected LeetCode problems to the newly created set
+      this.state.set.map(async problem => {
+        let problemData = {
+          title: problem.title,
+          url: problem.url,
+          level: problem.level,
+          completed: problem.completed,
+          time: problem.time,
+          setID: problem.setID
+        };
+        // GraphQL call to push data to AWS DynamoDB
+        API.graphql(
+          graphqlOperation(mutations.createProblem, { input: problemData })
+        );
+      });
     };
 
     return (
@@ -125,6 +165,9 @@ class CreateSet extends Component {
         {/* Jumbotron displays the current user's set */}
         <div id="checkmark-div">
           <i id="checkmark" className="fa fa-check"></i>
+        </div>
+        <div id="xmark-div">
+          <i id="xmark" className="fa fa-times"></i>
         </div>
         <Jumbotron>
           {this.state.set.length ? (

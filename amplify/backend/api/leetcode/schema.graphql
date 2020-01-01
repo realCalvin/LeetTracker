@@ -1,5 +1,6 @@
 type Set @model {
   id: ID!
+  author: String!
   title: String!
   company: String
   problems: [Problem] @connection(name: "SetProblems")
@@ -7,14 +8,17 @@ type Set @model {
 }
 type Problem @model {
   id: ID!
-  name: String!
+  setID: ID!
+  title: String!
   url: String!
   level: String!
-  key: String!
+  completed: Boolean!
+  time: String!
   set: Set @connection(name: "SetProblems")
 }
 type Comment @model {
   id: ID!
+  setID: ID!
   author: String!
   content: String!
   set: Set @connection(name: "SetComments")

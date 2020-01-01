@@ -7,21 +7,25 @@ export const createSet = `mutation CreateSet(
 ) {
   createSet(input: $input, condition: $condition) {
     id
+    author
     title
     company
     problems {
       items {
         id
-        name
+        setID
+        title
         url
         level
-        key
+        completed
+        time
       }
       nextToken
     }
     comments {
       items {
         id
+        setID
         author
         content
       }
@@ -36,21 +40,25 @@ export const updateSet = `mutation UpdateSet(
 ) {
   updateSet(input: $input, condition: $condition) {
     id
+    author
     title
     company
     problems {
       items {
         id
-        name
+        setID
+        title
         url
         level
-        key
+        completed
+        time
       }
       nextToken
     }
     comments {
       items {
         id
+        setID
         author
         content
       }
@@ -65,21 +73,25 @@ export const deleteSet = `mutation DeleteSet(
 ) {
   deleteSet(input: $input, condition: $condition) {
     id
+    author
     title
     company
     problems {
       items {
         id
-        name
+        setID
+        title
         url
         level
-        key
+        completed
+        time
       }
       nextToken
     }
     comments {
       items {
         id
+        setID
         author
         content
       }
@@ -94,12 +106,15 @@ export const createProblem = `mutation CreateProblem(
 ) {
   createProblem(input: $input, condition: $condition) {
     id
-    name
+    setID
+    title
     url
     level
-    key
+    completed
+    time
     set {
       id
+      author
       title
       company
       problems {
@@ -118,12 +133,15 @@ export const updateProblem = `mutation UpdateProblem(
 ) {
   updateProblem(input: $input, condition: $condition) {
     id
-    name
+    setID
+    title
     url
     level
-    key
+    completed
+    time
     set {
       id
+      author
       title
       company
       problems {
@@ -142,12 +160,15 @@ export const deleteProblem = `mutation DeleteProblem(
 ) {
   deleteProblem(input: $input, condition: $condition) {
     id
-    name
+    setID
+    title
     url
     level
-    key
+    completed
+    time
     set {
       id
+      author
       title
       company
       problems {
@@ -166,10 +187,12 @@ export const createComment = `mutation CreateComment(
 ) {
   createComment(input: $input, condition: $condition) {
     id
+    setID
     author
     content
     set {
       id
+      author
       title
       company
       problems {
@@ -188,10 +211,12 @@ export const updateComment = `mutation UpdateComment(
 ) {
   updateComment(input: $input, condition: $condition) {
     id
+    setID
     author
     content
     set {
       id
+      author
       title
       company
       problems {
@@ -210,10 +235,12 @@ export const deleteComment = `mutation DeleteComment(
 ) {
   deleteComment(input: $input, condition: $condition) {
     id
+    setID
     author
     content
     set {
       id
+      author
       title
       company
       problems {

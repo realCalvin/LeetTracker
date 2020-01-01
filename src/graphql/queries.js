@@ -4,21 +4,25 @@
 export const getSet = `query GetSet($id: ID!) {
   getSet(id: $id) {
     id
+    author
     title
     company
     problems {
       items {
         id
-        name
+        setID
+        title
         url
         level
-        key
+        completed
+        time
       }
       nextToken
     }
     comments {
       items {
         id
+        setID
         author
         content
       }
@@ -31,6 +35,7 @@ export const listSets = `query ListSets($filter: ModelSetFilterInput, $limit: In
   listSets(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      author
       title
       company
       problems {
@@ -47,12 +52,15 @@ export const listSets = `query ListSets($filter: ModelSetFilterInput, $limit: In
 export const getProblem = `query GetProblem($id: ID!) {
   getProblem(id: $id) {
     id
-    name
+    setID
+    title
     url
     level
-    key
+    completed
+    time
     set {
       id
+      author
       title
       company
       problems {
@@ -73,12 +81,15 @@ export const listProblems = `query ListProblems(
   listProblems(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
+      setID
+      title
       url
       level
-      key
+      completed
+      time
       set {
         id
+        author
         title
         company
       }
@@ -90,10 +101,12 @@ export const listProblems = `query ListProblems(
 export const getComment = `query GetComment($id: ID!) {
   getComment(id: $id) {
     id
+    setID
     author
     content
     set {
       id
+      author
       title
       company
       problems {
@@ -114,10 +127,12 @@ export const listComments = `query ListComments(
   listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      setID
       author
       content
       set {
         id
+        author
         title
         company
       }

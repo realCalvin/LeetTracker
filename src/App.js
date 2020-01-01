@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import Amplify from "aws-amplify";
+import Amplify, { Auth } from "aws-amplify";
 import { withAuthenticator } from "aws-amplify-react";
 import awsconfig from "./aws-exports";
 import Navbar from "./components/Navbar";
@@ -13,14 +13,14 @@ Amplify.configure(awsconfig);
 
 class App extends Component {
   // gets current user
-  // componentDidMount(){
-  //   Auth.currentSession()
-  //   .then(data => {
+  // componentDidMount() {
+  //   Auth.currentSession().then(data => {
   //     let token = data.getIdToken();
   //     this.setState({
   //       userid: token.payload["cognito:username"]
-  //     })
-  //   })
+  //     });
+  //     console.log(token.payload);
+  //   });
   // }
   render() {
     return (

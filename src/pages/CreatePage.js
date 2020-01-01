@@ -1,19 +1,29 @@
 import React, { Component } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import $ from "jquery";
+import { Auth } from "aws-amplify";
 
 class CreatePage extends Component {
   render() {
     const submitSet = e => {
       e.preventDefault();
       var results = $("#setForm").serializeArray();
-      this.props.history.push({
-        pathname: "/create/set",
-        state: {
-          title: results[0].value,
-          description: results[1].value,
-          company: results[2].value
-        }
+      // Get current user
+      Auth.currentSession().then(data => {
+        let token = data.getIdToken();
+        // Redirect to the next page to add problems to set
+        this.props.history.push({
+          pathname: "/create/set",
+          state: {
+            title: results[0].value,
+            description: results[1].value,
+            company: results[2].value,
+            author: token.payload["cognito:username"],
+            setID:
+              token.payload["cognito:username"] +
+              Math.floor(Math.random() * 10000000)
+          }
+        });
       });
     };
     return (
