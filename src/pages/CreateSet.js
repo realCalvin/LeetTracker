@@ -11,7 +11,7 @@ import DisplayCard from "../components/DisplayCard";
 import data from "../data.json";
 import "../index.css";
 import $ from "jquery";
-import Amplify, { API, graphqlOperation } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import * as mutations from "../graphql/mutations";
 
 class CreateSet extends Component {

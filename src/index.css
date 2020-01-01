@@ -13,6 +13,15 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+.card {
+  box-shadow: inset 0 4px 7px 1px #ffffff,
+    inset 0 -5px 20px rgba(173, 186, 204, 0.25), 0 2px 6px rgba(0, 21, 64, 0.14),
+    0 10px 20px rgba(0, 21, 64, 0.05);
+  transition: ease 0.5s;
+}
+.card:hover {
+  box-shadow: 1px 1px 30px #a1a1a1;
+}
 
 /* NAVBAR CSS */
 .navbar-link {
@@ -28,12 +37,12 @@ code {
 .input-group {
   width: 60%;
 }
-.card {
+.problem-card {
   text-align: center;
   margin: 8px;
   color: white;
 }
-.card:hover {
+.problem-card :hover {
   cursor: pointer;
 }
 .card-row {
@@ -81,4 +90,11 @@ code {
 }
 .page-item:hover {
   cursor: pointer;
+}
+
+/* VIEWSETS CSS */
+.set-card {
+  margin: 15px;
+  text-align: center;
+  border-radius: 10px;
 }

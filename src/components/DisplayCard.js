@@ -10,6 +10,7 @@ const DisplayCard = ({ problem, actionOnCard, checkLevel, toolMessage }) => {
       overlay={<Tooltip id={`tooltip-${"top"}`}>{toolMessage}</Tooltip>}
     >
       <Card
+        className="problem-card"
         bg="light"
         style={{ width: "18rem" }}
         key={problem.id}

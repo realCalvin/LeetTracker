@@ -24,6 +24,9 @@ const NavbarC = () => {
           <Link className="navbar-link" to="/create">
             Create
           </Link>
+          <Link className="navbar-link" to="/sets">
+            Sets
+          </Link>
           <Link className="navbar-link" to="/profile">
             Profile
           </Link>
