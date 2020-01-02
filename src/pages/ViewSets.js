@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import "../index.css";
 import { API, graphqlOperation, Auth } from "aws-amplify";
 import * as queries from "../graphql/queries";
-import { Card, Row, Button } from "react-bootstrap";
+import { Card, Row, Button, Spinner } from "react-bootstrap";
 
 class ViewSets extends Component {
   state = {
-    userSets: []
+    userSets: [],
+    loaded: false
   };
   async componentDidMount() {
     let data = await Auth.currentSession();
@@ -20,18 +21,21 @@ class ViewSets extends Component {
         }
       })
     );
+    console.log(userSets);
     this.setState({
-      userSets: userSets.data.listSets.items
+      userSets: userSets.data.listSets.items,
+      loaded: true
     });
   }
 
   render() {
-    let ViewSets = id => {
-      console.log(id);
+    let ViewSets = (id, title, company) => {
       this.props.history.push({
         pathname: "/view/set",
         state: {
-          id: id
+          id: id,
+          title: title,
+          company: company
         }
       });
     };
@@ -51,7 +55,7 @@ class ViewSets extends Component {
             <Button
               variant="primary"
               onClick={() => {
-                ViewSets(set.id);
+                ViewSets(set.id, set.title, set.company);
               }}
             >
               View Set
@@ -60,11 +64,21 @@ class ViewSets extends Component {
         </Card>
       );
     });
-
+    console.log(sets);
     return (
       <div className="Profile">
         <h1>Sets</h1>
-        <Row className="card-row">{sets}</Row>
+        <Row className="card-row">
+          {this.state.loaded ? (
+            sets.length ? (
+              sets
+            ) : (
+              <h4>Empty...</h4>
+            )
+          ) : (
+            <Spinner animation="border" variant="dark" />
+          )}
+        </Row>
       </div>
     );
   }

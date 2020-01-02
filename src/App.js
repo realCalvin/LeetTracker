@@ -35,7 +35,7 @@ class App extends Component {
             <Route exact path="/create" component={CreatePage}></Route>
             <Route exact path="/create/set" component={CreateSet}></Route>
             <Route exact path="/sets" component={ViewSets}></Route>
-            <Route exact path="/sets/view" component={ViewSet}></Route>
+            <Route exact path="/view/set" component={ViewSet}></Route>
             <Route exact path="/profile" component={Profile}></Route>
           </Switch>
         </BrowserRouter>

@@ -98,3 +98,8 @@ code {
   text-align: center;
   border-radius: 10px;
 }
+
+/* DISPLAY SET PROBLEMS CSS*/
+#view-set-row .table {
+  width: 70% !important;
+}

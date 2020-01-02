@@ -3,8 +3,8 @@ type Set @model {
   author: String!
   title: String!
   company: String
-  problems: [Problem] @connection(name: "SetProblems")
-  comments: [Comment] @connection(limit: 50, name: "SetComments")
+  problems: [Problem] @connection(limit: 1000, name: "SetProblems")
+  comments: [Comment] @connection(limit: 1000, name: "SetComments")
 }
 type Problem @model {
   id: ID!

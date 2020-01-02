@@ -158,6 +158,9 @@ class CreateSet extends Component {
           graphqlOperation(mutations.createProblem, { input: problemData })
         );
       });
+      setTimeout(function() {
+        this.props.history.push({ pathname: "/sets" });
+      }, 1500);
     };
 
     return (

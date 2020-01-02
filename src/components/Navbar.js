@@ -15,25 +15,30 @@ const NavbarC = () => {
   return (
     // Navbar that displays on every page
     <div id="Navbar">
-      <Navbar bg="dark" variant="dark">
+      <Navbar bg="dark" expand="lg" variant="dark">
         <Navbar.Brand href="/">LeetCode</Navbar.Brand>
-        <Nav className="mr-auto">
-          <Link className="navbar-link" to="/">
-            Home
-          </Link>
-          <Link className="navbar-link" to="/create">
-            Create
-          </Link>
-          <Link className="navbar-link" to="/sets">
-            Sets
-          </Link>
-          <Link className="navbar-link" to="/profile">
-            Profile
-          </Link>
-        </Nav>
-        <Nav>
-          <Nav.Link onClick={logOut}>Logout</Nav.Link>
-        </Nav>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Link className="navbar-link" to="/">
+              Home
+            </Link>
+            <Link className="navbar-link" to="/create">
+              Create
+            </Link>
+            <Link className="navbar-link" to="/sets">
+              Sets
+            </Link>
+            <Link className="navbar-link" to="/profile">
+              Profile
+            </Link>
+          </Nav>
+          <Nav>
+            <Link className="navbar-link" onClick={logOut} to="">
+              Logout
+            </Link>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
     </div>
   );

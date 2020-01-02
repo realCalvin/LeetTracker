@@ -13,9 +13,25 @@
         },
         "categories": {
             "auth": {
-                "leetcoded9838bac": {
-                    "hostedUIProviderCreds": "[{\"ProviderName\":\"Facebook\",\"client_id\":\"2706961049391840\",\"client_secret\":\"6d0c0583ac2ee0dd4f57791a842f8607\"},{\"ProviderName\":\"Google\",\"client_id\":\"214909691900-3le5et5p06n6nuv9qnmocsuk6hjv0nr7.apps.googleusercontent.com\",\"client_secret\":\"IIoQwrKFMrfVpXnbqLBz6S3w\"}]"
-                }
+                "leetcoded9838bac": {}
+            }
+        }
+    },
+    "leetcode": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-leetcode-leetcode-151644-authRole",
+            "UnauthRoleArn": "arn:aws:iam::222496626012:role/amplify-leetcode-leetcode-151644-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::222496626012:role/amplify-leetcode-leetcode-151644-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-leetcode-leetcode-151644-deployment",
+            "UnauthRoleName": "amplify-leetcode-leetcode-151644-unauthRole",
+            "StackName": "amplify-leetcode-leetcode-151644",
+            "StackId": "arn:aws:cloudformation:us-west-2:222496626012:stack/amplify-leetcode-leetcode-151644/c8dafc00-2cec-11ea-98a0-0625b49f10d2",
+            "AmplifyAppId": "d3i5xbbmcj6qbb"
+        },
+        "categories": {
+            "auth": {
+                "leetcoded9838bac": {}
             }
         }
     }
