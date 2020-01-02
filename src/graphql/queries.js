@@ -70,6 +70,15 @@ export const getProblem = `query GetProblem($id: ID!) {
         nextToken
       }
     }
+    times {
+      items {
+        id
+        problemID
+        time
+        date
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -92,6 +101,9 @@ export const listProblems = `query ListProblems(
         author
         title
         company
+      }
+      times {
+        nextToken
       }
     }
     nextToken
@@ -135,6 +147,58 @@ export const listComments = `query ListComments(
         author
         title
         company
+      }
+    }
+    nextToken
+  }
+}
+`;
+export const getTime = `query GetTime($id: ID!) {
+  getTime(id: $id) {
+    id
+    problemID
+    time
+    date
+    problem {
+      id
+      setID
+      title
+      url
+      level
+      completed
+      time
+      set {
+        id
+        author
+        title
+        company
+      }
+      times {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const listTimes = `query ListTimes(
+  $filter: ModelTimeFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listTimes(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      problemID
+      time
+      date
+      problem {
+        id
+        setID
+        title
+        url
+        level
+        completed
+        time
       }
     }
     nextToken

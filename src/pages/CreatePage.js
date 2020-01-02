@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Form, Button, Container } from "react-bootstrap";
 import $ from "jquery";
 import { Auth } from "aws-amplify";
+import { Row } from "react-bootstrap";
 
 class CreatePage extends Component {
   render() {
@@ -29,7 +30,9 @@ class CreatePage extends Component {
     return (
       <div>
         <Container>
-          <h1>Create New Set</h1>
+          <Row className="card-row">
+            <h1>Create New Set</h1>
+          </Row>
           <Form id="setForm" onSubmit={submitSet}>
             <Form.Group>
               <Form.Label>Title</Form.Label>
@@ -54,7 +57,9 @@ class CreatePage extends Component {
               <Form.Label>Company</Form.Label>
               <Form.Control name="company" type="text" placeholder="Optional" />
             </Form.Group>
-            <Button type="submit">Create</Button>
+            <Button variant="dark" type="submit">
+              Create
+            </Button>
           </Form>
         </Container>
       </div>

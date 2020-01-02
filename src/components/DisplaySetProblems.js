@@ -2,12 +2,19 @@ import React, { Component } from "react";
 import "../index.css";
 import { API, graphqlOperation, Auth } from "aws-amplify";
 import * as queries from "../graphql/queries";
-import { Card, Row, Button, Col, Table, Spinner } from "react-bootstrap";
+import { Card, Row, Button, Col, Table, Spinner, Modal } from "react-bootstrap";
+import DisplayProblem from "../components/DisplayProblem";
 
 class DisplaySetProblems extends Component {
   state = {
     problems: [],
-    loaded: false
+    loaded: false,
+    showModal: false,
+    id: "",
+    title: "",
+    url: "",
+    level: "",
+    time: ""
   };
   async componentDidUpdate() {
     if (this.state.loaded === false) {
@@ -21,6 +28,25 @@ class DisplaySetProblems extends Component {
   }
 
   render() {
+    // Toggle modal for the problem that the user clicked on & retrieve the problem's info
+    let showProblem = (id, title, url, level, time) => {
+      this.setState({
+        showModal: true,
+        id: id,
+        title: title,
+        url: url,
+        level: level,
+        time: time
+      });
+    };
+
+    // Toggle modal to close
+    let closeModal = () => {
+      this.setState({
+        showModal: false
+      });
+    };
+
     // function used to sort the set of problems via "difficulty level"
     function compare(a, b) {
       const levelA = a.level;
@@ -38,8 +64,16 @@ class DisplaySetProblems extends Component {
     let problems = null;
     if (this.state.problems.length) {
       let temp = this.state.problems;
-
+      // Variable problems stores the set's problems in difficult level order
       problems = temp.sort(compare).map(problem => {
+        let level = "";
+        if (problem.level === "1") {
+          level = "Easy";
+        } else if (problem.level === "2") {
+          level = "Medium";
+        } else {
+          level = "Hard";
+        }
         return (
           <tr key={problem.id}>
             <td>
@@ -47,14 +81,25 @@ class DisplaySetProblems extends Component {
                 {problem.title}
               </a>
             </td>
-            <td>{problem.level}</td>
+            <td>{level}</td>
             <td>{problem.time}</td>
             <td>
-              {problem.completed ? (
-                <i className="fa fa-check"></i>
-              ) : (
-                <i className="fa fa-times"></i>
-              )}
+              <Button
+                variant="outline-dark"
+                size="sm"
+                id={problem.id}
+                onClick={() => {
+                  showProblem(
+                    problem.id,
+                    problem.title,
+                    problem.url,
+                    problem.level,
+                    problem.time
+                  );
+                }}
+              >
+                View
+              </Button>
             </td>
           </tr>
         );
@@ -69,8 +114,8 @@ class DisplaySetProblems extends Component {
               <tr>
                 <th>Problems</th>
                 <th>Difficulty</th>
-                <th>Time</th>
-                <th>Completed</th>
+                <th>Best Time</th>
+                <th>View</th>
               </tr>
             </thead>
             <tbody>{problems}</tbody>
@@ -78,6 +123,15 @@ class DisplaySetProblems extends Component {
         ) : (
           <Spinner animation="border" variant="dark" />
         )}
+        <DisplayProblem
+          showModal={this.state.showModal}
+          closeModal={closeModal}
+          id={this.state.id}
+          title={this.state.title}
+          url={this.state.url}
+          level={this.state.level}
+          time={this.state.time}
+        />
       </Row>
     );
   }

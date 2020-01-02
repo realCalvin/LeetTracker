@@ -15,6 +15,7 @@ type Problem @model {
   completed: Boolean!
   time: String!
   set: Set @connection(name: "SetProblems")
+  times: [Time] @connection(limit: 15, name: "ProblemTimes")
 }
 type Comment @model {
   id: ID!
@@ -22,4 +23,11 @@ type Comment @model {
   author: String!
   content: String!
   set: Set @connection(name: "SetComments")
+}
+type Time @model {
+  id: ID!
+  problemID: ID!
+  time: String!
+  date: String!
+  problem: Problem @connection(name: "ProblemTimes")
 }

@@ -158,9 +158,7 @@ class CreateSet extends Component {
           graphqlOperation(mutations.createProblem, { input: problemData })
         );
       });
-      setTimeout(function() {
-        this.props.history.push({ pathname: "/sets" });
-      }, 1500);
+      this.props.history.push("/sets");
     };
 
     return (
@@ -209,7 +207,9 @@ class CreateSet extends Component {
           </Row>
           <Row className="card-row">
             {this.state.set.length ? (
-              <Button onClick={createSet}>Create</Button>
+              <Button variant="dark" onClick={createSet}>
+                Create
+              </Button>
             ) : (
               ""
             )}

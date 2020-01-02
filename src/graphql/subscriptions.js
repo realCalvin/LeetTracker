@@ -112,6 +112,15 @@ export const onCreateProblem = `subscription OnCreateProblem {
         nextToken
       }
     }
+    times {
+      items {
+        id
+        problemID
+        time
+        date
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -136,6 +145,15 @@ export const onUpdateProblem = `subscription OnUpdateProblem {
         nextToken
       }
     }
+    times {
+      items {
+        id
+        problemID
+        time
+        date
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -159,6 +177,15 @@ export const onDeleteProblem = `subscription OnDeleteProblem {
       comments {
         nextToken
       }
+    }
+    times {
+      items {
+        id
+        problemID
+        time
+        date
+      }
+      nextToken
     }
   }
 }
@@ -220,6 +247,87 @@ export const onDeleteComment = `subscription OnDeleteComment {
         nextToken
       }
       comments {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onCreateTime = `subscription OnCreateTime {
+  onCreateTime {
+    id
+    problemID
+    time
+    date
+    problem {
+      id
+      setID
+      title
+      url
+      level
+      completed
+      time
+      set {
+        id
+        author
+        title
+        company
+      }
+      times {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onUpdateTime = `subscription OnUpdateTime {
+  onUpdateTime {
+    id
+    problemID
+    time
+    date
+    problem {
+      id
+      setID
+      title
+      url
+      level
+      completed
+      time
+      set {
+        id
+        author
+        title
+        company
+      }
+      times {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const onDeleteTime = `subscription OnDeleteTime {
+  onDeleteTime {
+    id
+    problemID
+    time
+    date
+    problem {
+      id
+      setID
+      title
+      url
+      level
+      completed
+      time
+      set {
+        id
+        author
+        title
+        company
+      }
+      times {
         nextToken
       }
     }

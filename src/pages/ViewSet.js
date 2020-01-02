@@ -33,7 +33,9 @@ class ViewSets extends Component {
   render() {
     return (
       <div className="Profile">
-        <h1>Set</h1>
+        <Row className="card-row">
+          <h1>{this.props.location.state.title}</h1>
+        </Row>
         {/* Display the set's problems */}
         <DisplaySetProblems problems={this.state.problems} />
       </div>

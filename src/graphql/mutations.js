@@ -124,6 +124,15 @@ export const createProblem = `mutation CreateProblem(
         nextToken
       }
     }
+    times {
+      items {
+        id
+        problemID
+        time
+        date
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -151,6 +160,15 @@ export const updateProblem = `mutation UpdateProblem(
         nextToken
       }
     }
+    times {
+      items {
+        id
+        problemID
+        time
+        date
+      }
+      nextToken
+    }
   }
 }
 `;
@@ -177,6 +195,15 @@ export const deleteProblem = `mutation DeleteProblem(
       comments {
         nextToken
       }
+    }
+    times {
+      items {
+        id
+        problemID
+        time
+        date
+      }
+      nextToken
     }
   }
 }
@@ -247,6 +274,96 @@ export const deleteComment = `mutation DeleteComment(
         nextToken
       }
       comments {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const createTime = `mutation CreateTime(
+  $input: CreateTimeInput!
+  $condition: ModelTimeConditionInput
+) {
+  createTime(input: $input, condition: $condition) {
+    id
+    problemID
+    time
+    date
+    problem {
+      id
+      setID
+      title
+      url
+      level
+      completed
+      time
+      set {
+        id
+        author
+        title
+        company
+      }
+      times {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const updateTime = `mutation UpdateTime(
+  $input: UpdateTimeInput!
+  $condition: ModelTimeConditionInput
+) {
+  updateTime(input: $input, condition: $condition) {
+    id
+    problemID
+    time
+    date
+    problem {
+      id
+      setID
+      title
+      url
+      level
+      completed
+      time
+      set {
+        id
+        author
+        title
+        company
+      }
+      times {
+        nextToken
+      }
+    }
+  }
+}
+`;
+export const deleteTime = `mutation DeleteTime(
+  $input: DeleteTimeInput!
+  $condition: ModelTimeConditionInput
+) {
+  deleteTime(input: $input, condition: $condition) {
+    id
+    problemID
+    time
+    date
+    problem {
+      id
+      setID
+      title
+      url
+      level
+      completed
+      time
+      set {
+        id
+        author
+        title
+        company
+      }
+      times {
         nextToken
       }
     }

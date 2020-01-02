@@ -53,7 +53,7 @@ class ViewSets extends Component {
             )}
             <Card.Text>{set.description}</Card.Text>
             <Button
-              variant="primary"
+              variant="dark"
               onClick={() => {
                 ViewSets(set.id, set.title, set.company);
               }}
@@ -67,7 +67,9 @@ class ViewSets extends Component {
     console.log(sets);
     return (
       <div className="Profile">
-        <h1>Sets</h1>
+        <Row className="card-row">
+          <h1>Sets</h1>
+        </Row>
         <Row className="card-row">
           {this.state.loaded ? (
             sets.length ? (
