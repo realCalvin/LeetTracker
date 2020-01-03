@@ -115,6 +115,7 @@ export const onCreateProblem = `subscription OnCreateProblem {
     times {
       items {
         id
+        createdAt
         problemID
         time
         date
@@ -148,6 +149,7 @@ export const onUpdateProblem = `subscription OnUpdateProblem {
     times {
       items {
         id
+        createdAt
         problemID
         time
         date
@@ -181,6 +183,7 @@ export const onDeleteProblem = `subscription OnDeleteProblem {
     times {
       items {
         id
+        createdAt
         problemID
         time
         date
@@ -256,6 +259,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
 export const onCreateTime = `subscription OnCreateTime {
   onCreateTime {
     id
+    createdAt
     problemID
     time
     date
@@ -283,6 +287,7 @@ export const onCreateTime = `subscription OnCreateTime {
 export const onUpdateTime = `subscription OnUpdateTime {
   onUpdateTime {
     id
+    createdAt
     problemID
     time
     date
@@ -310,6 +315,7 @@ export const onUpdateTime = `subscription OnUpdateTime {
 export const onDeleteTime = `subscription OnDeleteTime {
   onDeleteTime {
     id
+    createdAt
     problemID
     time
     date

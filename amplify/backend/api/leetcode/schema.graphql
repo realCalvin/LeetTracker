@@ -24,8 +24,9 @@ type Comment @model {
   content: String!
   set: Set @connection(name: "SetComments")
 }
-type Time @model {
+type Time @model @key(name: "byTime", fields: ["createdAt"]) {
   id: ID!
+  createdAt: String
   problemID: ID!
   time: String!
   date: String!

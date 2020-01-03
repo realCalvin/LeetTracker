@@ -73,6 +73,7 @@ export const getProblem = `query GetProblem($id: ID!) {
     times {
       items {
         id
+        createdAt
         problemID
         time
         date
@@ -156,6 +157,7 @@ export const listComments = `query ListComments(
 export const getTime = `query GetTime($id: ID!) {
   getTime(id: $id) {
     id
+    createdAt
     problemID
     time
     date
@@ -188,6 +190,7 @@ export const listTimes = `query ListTimes(
   listTimes(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
+      createdAt
       problemID
       time
       date

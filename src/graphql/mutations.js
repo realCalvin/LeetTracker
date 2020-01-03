@@ -127,6 +127,7 @@ export const createProblem = `mutation CreateProblem(
     times {
       items {
         id
+        createdAt
         problemID
         time
         date
@@ -163,6 +164,7 @@ export const updateProblem = `mutation UpdateProblem(
     times {
       items {
         id
+        createdAt
         problemID
         time
         date
@@ -199,6 +201,7 @@ export const deleteProblem = `mutation DeleteProblem(
     times {
       items {
         id
+        createdAt
         problemID
         time
         date
@@ -286,6 +289,7 @@ export const createTime = `mutation CreateTime(
 ) {
   createTime(input: $input, condition: $condition) {
     id
+    createdAt
     problemID
     time
     date
@@ -316,6 +320,7 @@ export const updateTime = `mutation UpdateTime(
 ) {
   updateTime(input: $input, condition: $condition) {
     id
+    createdAt
     problemID
     time
     date
@@ -346,6 +351,7 @@ export const deleteTime = `mutation DeleteTime(
 ) {
   deleteTime(input: $input, condition: $condition) {
     id
+    createdAt
     problemID
     time
     date
