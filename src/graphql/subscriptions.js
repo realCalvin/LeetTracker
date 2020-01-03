@@ -22,6 +22,7 @@ export const onCreateSet = `subscription OnCreateSet {
     comments {
       items {
         id
+        createdAt
         setID
         author
         content
@@ -52,6 +53,7 @@ export const onUpdateSet = `subscription OnUpdateSet {
     comments {
       items {
         id
+        createdAt
         setID
         author
         content
@@ -82,6 +84,7 @@ export const onDeleteSet = `subscription OnDeleteSet {
     comments {
       items {
         id
+        createdAt
         setID
         author
         content
@@ -196,6 +199,7 @@ export const onDeleteProblem = `subscription OnDeleteProblem {
 export const onCreateComment = `subscription OnCreateComment {
   onCreateComment {
     id
+    createdAt
     setID
     author
     content
@@ -217,6 +221,7 @@ export const onCreateComment = `subscription OnCreateComment {
 export const onUpdateComment = `subscription OnUpdateComment {
   onUpdateComment {
     id
+    createdAt
     setID
     author
     content
@@ -238,6 +243,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
 export const onDeleteComment = `subscription OnDeleteComment {
   onDeleteComment {
     id
+    createdAt
     setID
     author
     content

@@ -1,18 +1,9 @@
 import React, { Component } from "react";
 import "../index.css";
-import { API, graphqlOperation, Auth } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../graphql/queries";
 import * as mutations from "../graphql/mutations";
-import {
-  Card,
-  Row,
-  Button,
-  Modal,
-  Table,
-  FormControl,
-  Alert,
-  Form
-} from "react-bootstrap";
+import { Row, Button, Modal, Table, FormControl, Alert } from "react-bootstrap";
 import Timer from "../components/Timer";
 import $ from "jquery";
 
@@ -26,6 +17,33 @@ class DisplayProblem extends Component {
   };
   getTime = true;
   componentDidUpdate() {
+    // Function below is used to sort an array of objects based on the attritude, "createdAt"
+    // Function is referenced from stackoverflow
+    var sortBy = (function() {
+      var toString = Object.prototype.toString,
+        // default parser function
+        parse = function(x) {
+          return x;
+        },
+        // gets the item to be sorted
+        getItem = function(x) {
+          var isObject = x != null && typeof x === "object";
+          var isProp = isObject && this.prop in x;
+          return this.parser(isProp ? x[this.prop] : x);
+        };
+
+      return function sortby(array, cfg) {
+        if (!(array instanceof Array && array.length)) return [];
+        if (toString.call(cfg) !== "[object Object]") cfg = {};
+        if (typeof cfg.parser !== "function") cfg.parser = parse;
+        cfg.desc = !!cfg.desc ? -1 : 1;
+        return array.sort(function(a, b) {
+          a = getItem.call(cfg, a);
+          b = getItem.call(cfg, b);
+          return cfg.desc * (a < b ? -1 : +(a > b));
+        });
+      };
+    })();
     // API call used to grab the problem's times and set the state
     if (this.props.id) {
       API.graphql(
@@ -35,14 +53,15 @@ class DisplayProblem extends Component {
               eq: this.props.id
             }
           },
-          limit: 1000,
-          sortDirection: "DESC"
+          limit: 1000
         })
       ).then(res => {
-        console.log(res);
         if (this.getTime) {
+          // Retrieve the data from result & sorts it via createdAt
+          let times = res.data.listTimes.items;
+          sortBy(times, { prop: "createdAt" });
           this.setState({
-            times: res.data.listTimes.items
+            times: times
           });
         }
       });
@@ -86,6 +105,7 @@ class DisplayProblem extends Component {
     // Updated close function to clear the "input" field in state
     let updatedClose = () => {
       this.setState({
+        times: [],
         input: null,
         showAlert: false,
         showTimer: false,

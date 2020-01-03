@@ -34,5 +34,23 @@
                 "leetcoded9838bac": {}
             }
         }
+    },
+    "realcode": {
+        "awscloudformation": {
+            "AuthRoleName": "amplify-leetcode-realcode-204111-authRole",
+            "UnauthRoleArn": "arn:aws:iam::222496626012:role/amplify-leetcode-realcode-204111-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::222496626012:role/amplify-leetcode-realcode-204111-authRole",
+            "Region": "us-west-2",
+            "DeploymentBucketName": "amplify-leetcode-realcode-204111-deployment",
+            "UnauthRoleName": "amplify-leetcode-realcode-204111-unauthRole",
+            "StackName": "amplify-leetcode-realcode-204111",
+            "StackId": "arn:aws:cloudformation:us-west-2:222496626012:stack/amplify-leetcode-realcode-204111/474260a0-2de3-11ea-b918-0a51a69474f2",
+            "AmplifyAppId": "d3i5xbbmcj6qbb"
+        },
+        "categories": {
+            "auth": {
+                "leetcoded9838bac": {}
+            }
+        }
     }
 }

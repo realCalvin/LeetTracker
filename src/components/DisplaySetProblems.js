@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import "../index.css";
-import { API, graphqlOperation, Auth } from "aws-amplify";
-import * as queries from "../graphql/queries";
-import { Card, Row, Button, Col, Table, Spinner, Modal } from "react-bootstrap";
+import { Row, Button, Table, Spinner, Badge } from "react-bootstrap";
 import DisplayProblem from "../components/DisplayProblem";
 
 class DisplaySetProblems extends Component {
@@ -66,13 +64,13 @@ class DisplaySetProblems extends Component {
       let temp = this.state.problems;
       // Variable problems stores the set's problems in difficult level order
       problems = temp.sort(compare).map(problem => {
-        let level = "";
+        let level;
         if (problem.level === "1") {
-          level = "Easy";
+          level = <Badge variant="success">Easy</Badge>;
         } else if (problem.level === "2") {
-          level = "Medium";
+          level = <Badge variant="warning">Medium</Badge>;
         } else {
-          level = "Hard";
+          level = <Badge variant="danger">Hard</Badge>;
         }
         return (
           <tr key={problem.id}>

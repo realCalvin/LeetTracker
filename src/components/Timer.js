@@ -1,14 +1,6 @@
 import React, { Component } from "react";
 import "../index.css";
-import {
-  Card,
-  Row,
-  Button,
-  Modal,
-  Table,
-  FormControl,
-  Alert
-} from "react-bootstrap";
+import { Button, Alert } from "react-bootstrap";
 
 class DisplayProblem extends Component {
   state = {

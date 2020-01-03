@@ -15,20 +15,21 @@ type Problem @model {
   completed: Boolean!
   time: String!
   set: Set @connection(name: "SetProblems")
-  times: [Time] @connection(limit: 15, name: "ProblemTimes")
+  times: [Time] @connection(name: "ProblemTimes", sortField: "createdAt")
 }
 type Comment @model {
   id: ID!
+  createdAt: String
   setID: ID!
   author: String!
   content: String!
   set: Set @connection(name: "SetComments")
 }
-type Time @model @key(name: "byTime", fields: ["createdAt"]) {
+type Time @model {
   id: ID!
   createdAt: String
   problemID: ID!
   time: String!
   date: String!
-  problem: Problem @connection(name: "ProblemTimes")
+  problem: Problem @connection(name: "ProblemTimes", sortField: "createdAt")
 }

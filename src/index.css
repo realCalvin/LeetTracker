@@ -101,6 +101,10 @@ code {
 #view-set-row .table {
   width: 70% !important;
 }
+.badge-warning {
+  background-color: #f0ad4e;
+  color: white;
+}
 
 /* DISPLAY PROBLEM CSS */
 #problem-modal a {

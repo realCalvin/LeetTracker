@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import "../index.css";
-import { API, graphqlOperation, Auth } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../graphql/queries";
-import { Card, Row, Button } from "react-bootstrap";
+import { Row } from "react-bootstrap";
 import DisplaySetProblems from "../components/DisplaySetProblems";
 
 class ViewSets extends Component {

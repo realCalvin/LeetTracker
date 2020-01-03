@@ -21,7 +21,6 @@ class ViewSets extends Component {
         }
       })
     );
-    console.log(userSets);
     this.setState({
       userSets: userSets.data.listSets.items,
       loaded: true
@@ -64,7 +63,6 @@ class ViewSets extends Component {
         </Card>
       );
     });
-    console.log(sets);
     return (
       <div className="Profile">
         <Row className="card-row">

@@ -131,14 +131,14 @@ class CreateSet extends Component {
 
     // Creates the user set using mutations from graphql
     let createSet = () => {
-      console.log(this.state.set);
-
       // Data for the current user's set
       let setData = {
         id: this.props.location.state.setID,
         author: this.props.location.state.author,
         title: this.props.location.state.title,
         company: this.props.location.state.company
+          ? this.props.location.state.company
+          : "No Company"
       };
       // GraphQL call to push data to AWS DynamoDB
       API.graphql(graphqlOperation(mutations.createSet, { input: setData }));
