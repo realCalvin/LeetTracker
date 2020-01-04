@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import "../index.css";
 import { Row, Button, Table, Spinner, Badge } from "react-bootstrap";
 import DisplayProblem from "../components/DisplayProblem";
+import { API, graphqlOperation } from "aws-amplify";
+import * as queries from "../graphql/queries";
 
 class DisplaySetProblems extends Component {
   state = {
     problems: [],
+    times: [],
     loaded: false,
     showModal: false,
     id: "",
@@ -17,9 +20,7 @@ class DisplaySetProblems extends Component {
   async componentDidUpdate() {
     if (this.state.loaded === false) {
       this.setState({
-        problems: this.props.problems
-      });
-      this.setState({
+        problems: this.props.problems,
         loaded: true
       });
     }
@@ -28,13 +29,57 @@ class DisplaySetProblems extends Component {
   render() {
     // Toggle modal for the problem that the user clicked on & retrieve the problem's info
     let showProblem = (id, title, url, level, time) => {
-      this.setState({
-        showModal: true,
-        id: id,
-        title: title,
-        url: url,
-        level: level,
-        time: time
+      // Function below is used to sort an array of objects based on the attritude, "createdAt"
+      // Function is referenced from stackoverflow
+      var sortBy = (function() {
+        var toString = Object.prototype.toString,
+          // default parser function
+          parse = function(x) {
+            return x;
+          },
+          // gets the item to be sorted
+          getItem = function(x) {
+            var isObject = x != null && typeof x === "object";
+            var isProp = isObject && this.prop in x;
+            return this.parser(isProp ? x[this.prop] : x);
+          };
+
+        return function sortby(array, cfg) {
+          if (!(array instanceof Array && array.length)) return [];
+          if (toString.call(cfg) !== "[object Object]") cfg = {};
+          if (typeof cfg.parser !== "function") cfg.parser = parse;
+          cfg.desc = !!cfg.desc ? -1 : 1;
+          return array.sort(function(a, b) {
+            a = getItem.call(cfg, a);
+            b = getItem.call(cfg, b);
+            return cfg.desc * (a < b ? -1 : +(a > b));
+          });
+        };
+      })();
+      // API call used to grab the problem's times and set the state
+      API.graphql(
+        graphqlOperation(queries.listTimes, {
+          filter: {
+            problemID: {
+              eq: id
+            }
+          },
+          limit: 1000
+        })
+      ).then(res => {
+        // Retrieve the data from result & sorts it via createdAt
+        let times = res.data.listTimes.items;
+        sortBy(times, { prop: "createdAt" });
+        this.setState({
+          times: times,
+          showModal: true,
+          id: id,
+          title: title,
+          url: url,
+          level: level,
+          time: time
+        });
+        console.log(this.state);
       });
     };
 
@@ -122,6 +167,7 @@ class DisplaySetProblems extends Component {
           <Spinner animation="border" variant="dark" />
         )}
         <DisplayProblem
+          times={this.state.times}
           showModal={this.state.showModal}
           closeModal={closeModal}
           id={this.state.id}
