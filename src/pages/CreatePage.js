@@ -5,6 +5,9 @@ import { Auth } from "aws-amplify";
 import { Row } from "react-bootstrap";
 
 class CreatePage extends Component {
+  componentDidMount() {
+    $("#other-company").hide();
+  }
   render() {
     const submitSet = e => {
       e.preventDefault();
@@ -19,6 +22,7 @@ class CreatePage extends Component {
             title: results[0].value,
             description: results[1].value,
             company: results[2].value,
+            other: results[3].value,
             author: token.payload["cognito:username"],
             setID:
               token.payload["cognito:username"] +
@@ -26,6 +30,12 @@ class CreatePage extends Component {
           }
         });
       });
+    };
+    let displayOther = () => {
+      $("#other-company").show();
+    };
+    let closeOther = () => {
+      $("#other-company").hide();
     };
     return (
       <div>
@@ -55,7 +65,23 @@ class CreatePage extends Component {
             </Form.Group>
             <Form.Group>
               <Form.Label>Company</Form.Label>
-              <Form.Control name="company" type="text" placeholder="Optional" />
+              <Form.Control as="select" name="company" multiple required>
+                <option onClick={closeOther}>Facebook</option>
+                <option onClick={closeOther}>Amazon</option>
+                <option onClick={closeOther}>Google</option>
+                <option onClick={closeOther}>Microsoft</option>
+                <option onClick={closeOther}>Apple</option>
+                <option onClick={closeOther}>Twitter</option>
+                <option onClick={displayOther}>Other</option>
+              </Form.Control>
+            </Form.Group>
+            <Form.Group id="other-company">
+              <Form.Label>Other Company</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Company Name"
+                name="other"
+              />
             </Form.Group>
             <Button variant="dark" type="submit">
               Create

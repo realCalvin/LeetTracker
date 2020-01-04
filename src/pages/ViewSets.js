@@ -7,7 +7,8 @@ import { Card, Row, Button, Spinner } from "react-bootstrap";
 class ViewSets extends Component {
   state = {
     userSets: [],
-    loaded: false
+    loaded: false,
+    created: false
   };
   async componentDidMount() {
     let data = await Auth.currentSession();
@@ -18,7 +19,8 @@ class ViewSets extends Component {
           author: {
             eq: token.payload["cognito:username"]
           }
-        }
+        },
+        limit: 1000
       })
     );
     this.setState({
@@ -38,19 +40,53 @@ class ViewSets extends Component {
         }
       });
     };
+    let companyImage = company => {
+      if (company === "No Company") {
+        return "No Company";
+      } else if (
+        company === "Google" ||
+        company === "Amazon" ||
+        company === "Facebook" ||
+        company === "Twitter" ||
+        company === "Apple" ||
+        company === "Microsoft"
+      ) {
+        return company;
+      } else {
+        return "Other";
+      }
+    };
     let sets = this.state.userSets.map(set => {
+      let companyName = companyImage(set.company);
+      let otherCompany = false;
+      if (
+        set.company !== "Google" &&
+        set.company !== "Amazon" &&
+        set.company !== "Facebook" &&
+        set.company !== "Twitter" &&
+        set.company !== "Apple" &&
+        set.company !== "Microsoft" &&
+        set.company !== "No Company"
+      ) {
+        otherCompany = true;
+      }
       return (
-        <Card className="set-card" key={set.id} style={{ width: "18rem" }}>
+        <Card className="set-card" key={set.id} style={{ width: "15rem" }}>
+          <Card.Img
+            variant="top"
+            src={require("../components/img/" + companyName + ".png")}
+            height="250px"
+            width="170px"
+          />
+          {otherCompany ? (
+            <div id="other-company-label">
+              <h3>{set.company}</h3>
+            </div>
+          ) : (
+            ""
+          )}
           <Card.Body>
             <Card.Title>{set.title}</Card.Title>
-            {set.company ? (
-              <Card.Subtitle className="mb-2 text-muted">
-                {set.company}
-              </Card.Subtitle>
-            ) : (
-              ""
-            )}
-            <Card.Text>{set.description}</Card.Text>
             <Button
               variant="dark"
               onClick={() => {

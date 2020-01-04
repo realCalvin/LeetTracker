@@ -96,6 +96,16 @@ code {
   text-align: center;
   border-radius: 10px;
 }
+#other-company-label {
+  color: white;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 50%;
+}
 
 /* DISPLAY SET PROBLEMS CSS*/
 #view-set-row .table {
