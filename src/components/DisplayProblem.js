@@ -11,8 +11,10 @@ class DisplayProblem extends Component {
     input: null,
     showAlert: false,
     showTimer: false,
-    showError: false
+    showError: false,
+    times: []
   };
+
   render() {
     // Function used to dynamically add input to modal on user click
     let addInput = id => {
@@ -83,11 +85,21 @@ class DisplayProblem extends Component {
         // GraphQL call to push data to AWS DynamoDB
         API.graphql(graphqlOperation(mutations.createTime, { input: setData }));
         $(".problem-input").hide();
+
+        let newTimes = this.state.times;
+        newTimes.push(setData);
         this.setState({
           showTimer: false,
-          showAlert: false
+          showAlert: false,
+          times: newTimes
         });
-        window.location.reload();
+        this.props.showProblem(
+          this.props.id,
+          this.props.title,
+          this.props.url,
+          this.props.level,
+          this.props.time
+        );
       }
     };
 

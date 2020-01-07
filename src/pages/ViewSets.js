@@ -88,6 +88,7 @@ class ViewSets extends Component {
           <Card.Body>
             <Card.Title>{set.title}</Card.Title>
             <Button
+              className="view-sets-btn"
               variant="dark"
               onClick={() => {
                 ViewSets(set.id, set.title, set.company);
@@ -100,9 +101,9 @@ class ViewSets extends Component {
       );
     });
     return (
-      <div className="Profile">
+      <div className="Profile spacing">
         <Row className="card-row">
-          <h1>Sets</h1>
+          <h1 className="header-spacing">Sets</h1>
         </Row>
         <Row className="card-row">
           {this.state.loaded ? (

@@ -28,13 +28,14 @@ class ViewSets extends Component {
       this.setState({
         problems: setProblems.data.listProblems.items
       });
+      console.log(this.state.problems);
     }
   }
   render() {
     return (
-      <div className="Profile">
+      <div className="Profile spacing">
         <Row className="card-row">
-          <h1>{this.props.location.state.title}</h1>
+          <h1 className="header-spacing">{this.props.location.state.title}</h1>
         </Row>
         {/* Display the set's problems */}
         <DisplaySetProblems problems={this.state.problems} />

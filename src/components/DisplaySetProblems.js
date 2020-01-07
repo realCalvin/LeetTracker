@@ -79,7 +79,6 @@ class DisplaySetProblems extends Component {
           level: level,
           time: time
         });
-        console.log(this.state);
       });
     };
 
@@ -175,6 +174,7 @@ class DisplaySetProblems extends Component {
           url={this.state.url}
           level={this.state.level}
           time={this.state.time}
+          showProblem={showProblem}
         />
       </Row>
     );

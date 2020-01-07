@@ -39,9 +39,9 @@ class CreatePage extends Component {
     };
     return (
       <div>
-        <Container>
+        <Container clasName="spacing">
           <Row className="card-row">
-            <h1>Create New Set</h1>
+            <h1 className="header-spacing">Create New Set</h1>
           </Row>
           <Form id="setForm" onSubmit={submitSet}>
             <Form.Group>

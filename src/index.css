@@ -20,6 +20,12 @@ code {
   box-shadow: -5px 5px 20px #a1a1a1;
   transition: 0.4s;
 }
+.spacing {
+  padding-top: 10px !important;
+}
+.header-spacing {
+  padding: 50px 0px 25px 0px !important;
+}
 
 /* NAVBAR CSS */
 .navbar-link {
@@ -105,6 +111,10 @@ code {
   bottom: 0;
   right: 0;
   height: 50%;
+}
+.view-sets-btn:hover {
+  background-color: transparent !important;
+  color: black !important;
 }
 
 /* DISPLAY SET PROBLEMS CSS*/
