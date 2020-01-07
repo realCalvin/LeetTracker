@@ -30,7 +30,117 @@ code {
 /* DASHBOARD CSS */
 #landing-page {
   height: 100vh;
+  display: relative;
   background-color: rgb(54, 54, 54);
+  width: 100%;
+  overflow: hidden;
+  color: white;
+}
+#landing-content {
+  padding-top: 200px;
+  text-align: center;
+}
+#landing-content-1 {
+  display: inline-block;
+  padding-right: 100px;
+}
+#landing-content-2 {
+  display: inline-block;
+}
+#landing-page h1 {
+  font-weight: bold;
+  text-transform: capitalize;
+  color: white;
+}
+#landing-page p {
+  font-size: 20px;
+  margin: 20px 0 25px;
+  letter-spacing: 1px;
+  font-weight: 350;
+  text-transform: capitalize;
+  color: white;
+}
+#landing-pic1 {
+  height: 450px;
+}
+#landing-pic2 {
+  height: 500px;
+}
+#landing-page2 {
+  height: 100vh;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding-top: 150px;
+}
+#landing-description {
+  text-align: center;
+}
+#landing-description ul {
+  list-style-type: none;
+}
+.wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url(../src/components/img/wave.png);
+  background-size: 1000px 100px;
+}
+.dark-wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: url(../src/components/img/wave1.png);
+  background-size: 1000px 100px;
+}
+.wave1 {
+  animation: animate 25s linear infinite;
+  z-index: 1000;
+  opacity: 1;
+  animation-delay: 0s;
+  bottom: 0;
+}
+.wave2 {
+  animation: animate2 10s linear infinite;
+  z-index: 999;
+  opacity: 0.5;
+  animation-delay: -5s;
+  bottom: 10px;
+}
+.wave3 {
+  animation: animate3 10s linear infinite;
+  z-index: 998;
+  opacity: 0.2;
+  animation-delay: -2s;
+  bottom: 15;
+}
+@keyframes animate {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: 1000px;
+  }
+}
+@keyframes animate2 {
+  0% {
+    background-position-x: 0;
+  }
+  100% {
+    background-position-x: -1000px;
+  }
+}
+@keyframes animate3 {
+  0% {
+    background-position-x: 400;
+  }
+  100% {
+    background-position-x: -2000px;
+  }
 }
 
 /* NAVBAR CSS */
@@ -151,4 +261,14 @@ code {
 }
 #timer button {
   margin: 0px 8px;
+}
+
+@media only screen and (max-width: 1050px) {
+  #landing-content-1 {
+    display: inline-block;
+    padding: 0 0 30px 0;
+  }
+  #landing-pic1 {
+    height: 300px;
+  }
 }
