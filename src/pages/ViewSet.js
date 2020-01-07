@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "../index.css";
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../graphql/queries";
-import { Row } from "react-bootstrap";
+import { Row, Jumbotron } from "react-bootstrap";
 import DisplaySetProblems from "../components/DisplaySetProblems";
 
 class ViewSets extends Component {
@@ -13,6 +13,7 @@ class ViewSets extends Component {
     if (this.props.location.state === undefined) {
       this.props.history.push({ pathname: "/sets" });
     } else {
+      console.log(this.props.location.state);
       // Retrieve list of problems for the set that is clicked on
       let setProblems = await API.graphql(
         graphqlOperation(queries.listProblems, {
@@ -33,10 +34,15 @@ class ViewSets extends Component {
   }
   render() {
     return (
-      <div className="Profile spacing">
-        <Row className="card-row">
-          <h1 className="header-spacing">{this.props.location.state.title}</h1>
-        </Row>
+      <div className="Profile">
+        <Jumbotron>
+          <Row className="card-row">
+            <h1>{this.props.location.state.title}</h1>
+          </Row>
+          <Row className="card-row">
+            <p>{this.props.location.state.description}</p>
+          </Row>
+        </Jumbotron>
         {/* Display the set's problems */}
         <DisplaySetProblems problems={this.state.problems} />
       </div>

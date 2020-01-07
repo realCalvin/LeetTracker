@@ -9,6 +9,7 @@ export const createSet = `mutation CreateSet(
     id
     author
     title
+    description
     company
     problems {
       items {
@@ -43,6 +44,7 @@ export const updateSet = `mutation UpdateSet(
     id
     author
     title
+    description
     company
     problems {
       items {
@@ -77,6 +79,7 @@ export const deleteSet = `mutation DeleteSet(
     id
     author
     title
+    description
     company
     problems {
       items {
@@ -119,6 +122,7 @@ export const createProblem = `mutation CreateProblem(
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -156,6 +160,7 @@ export const updateProblem = `mutation UpdateProblem(
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -193,6 +198,7 @@ export const deleteProblem = `mutation DeleteProblem(
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -228,6 +234,7 @@ export const createComment = `mutation CreateComment(
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -253,6 +260,7 @@ export const updateComment = `mutation UpdateComment(
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -278,6 +286,7 @@ export const deleteComment = `mutation DeleteComment(
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -311,6 +320,7 @@ export const createTime = `mutation CreateTime(
         id
         author
         title
+        description
         company
       }
       times {
@@ -342,6 +352,7 @@ export const updateTime = `mutation UpdateTime(
         id
         author
         title
+        description
         company
       }
       times {
@@ -373,6 +384,7 @@ export const deleteTime = `mutation DeleteTime(
         id
         author
         title
+        description
         company
       }
       times {

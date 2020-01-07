@@ -2,6 +2,7 @@ type Set @model {
   id: ID!
   author: String!
   title: String!
+  description: String!
   company: String
   problems: [Problem] @connection(limit: 1000, name: "SetProblems")
   comments: [Comment] @connection(limit: 1000, name: "SetComments")

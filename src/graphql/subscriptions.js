@@ -6,6 +6,7 @@ export const onCreateSet = `subscription OnCreateSet {
     id
     author
     title
+    description
     company
     problems {
       items {
@@ -37,6 +38,7 @@ export const onUpdateSet = `subscription OnUpdateSet {
     id
     author
     title
+    description
     company
     problems {
       items {
@@ -68,6 +70,7 @@ export const onDeleteSet = `subscription OnDeleteSet {
     id
     author
     title
+    description
     company
     problems {
       items {
@@ -107,6 +110,7 @@ export const onCreateProblem = `subscription OnCreateProblem {
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -141,6 +145,7 @@ export const onUpdateProblem = `subscription OnUpdateProblem {
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -175,6 +180,7 @@ export const onDeleteProblem = `subscription OnDeleteProblem {
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -207,6 +213,7 @@ export const onCreateComment = `subscription OnCreateComment {
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -229,6 +236,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -251,6 +259,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
       id
       author
       title
+      description
       company
       problems {
         nextToken
@@ -281,6 +290,7 @@ export const onCreateTime = `subscription OnCreateTime {
         id
         author
         title
+        description
         company
       }
       times {
@@ -309,6 +319,7 @@ export const onUpdateTime = `subscription OnUpdateTime {
         id
         author
         title
+        description
         company
       }
       times {
@@ -337,6 +348,7 @@ export const onDeleteTime = `subscription OnDeleteTime {
         id
         author
         title
+        description
         company
       }
       times {

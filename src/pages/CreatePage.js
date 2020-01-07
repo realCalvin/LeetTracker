@@ -39,7 +39,7 @@ class CreatePage extends Component {
     };
     return (
       <div>
-        <Container clasName="spacing">
+        <Container className="spacing">
           <Row className="card-row">
             <h1 className="header-spacing">Create New Set</h1>
           </Row>

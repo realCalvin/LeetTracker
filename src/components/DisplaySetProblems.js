@@ -12,6 +12,7 @@ class DisplaySetProblems extends Component {
     loaded: false,
     showModal: false,
     id: "",
+    setID: "",
     title: "",
     url: "",
     level: "",
@@ -28,7 +29,7 @@ class DisplaySetProblems extends Component {
 
   render() {
     // Toggle modal for the problem that the user clicked on & retrieve the problem's info
-    let showProblem = (id, title, url, level, time) => {
+    let showProblem = (id, setID, title, url, level, time) => {
       // Function below is used to sort an array of objects based on the attritude, "createdAt"
       // Function is referenced from stackoverflow
       var sortBy = (function() {
@@ -74,11 +75,13 @@ class DisplaySetProblems extends Component {
           times: times,
           showModal: true,
           id: id,
+          setID: setID,
           title: title,
           url: url,
           level: level,
           time: time
         });
+        console.log(this.state.times);
       });
     };
 
@@ -133,6 +136,7 @@ class DisplaySetProblems extends Component {
                 onClick={() => {
                   showProblem(
                     problem.id,
+                    problem.setID,
                     problem.title,
                     problem.url,
                     problem.level,
@@ -169,6 +173,7 @@ class DisplaySetProblems extends Component {
           times={this.state.times}
           showModal={this.state.showModal}
           closeModal={closeModal}
+          setID={this.state.setID}
           id={this.state.id}
           title={this.state.title}
           url={this.state.url}

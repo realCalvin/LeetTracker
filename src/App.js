@@ -15,32 +15,39 @@ import ViewSet from "./pages/ViewSet";
 Amplify.configure(awsconfig);
 
 class App extends Component {
-  // gets current user
-  // componentDidMount() {
-  //   Auth.currentSession().then(data => {
-  //     let token = data.getIdToken();
-  //     this.setState({
-  //       userid: token.payload["cognito:username"]
-  //     });
-  //     console.log(token.payload);
-  //   });
-  // }
   render() {
     return (
       <div className="App">
         <BrowserRouter>
-          <Navbar />
           <Switch>
-            <Route exact path="/" component={Dashboard}></Route>
-            <Route exact path="/create" component={CreatePage}></Route>
-            <Route exact path="/create/set" component={CreateSet}></Route>
-            <Route exact path="/sets" component={ViewSets}></Route>
-            <Route exact path="/view/set" component={ViewSet}></Route>
-            <Route exact path="/profile" component={Profile}></Route>
+            <Route exact path="/" component={NoNavbarContainer} />
+            <Route component={NavbarContainer} />
           </Switch>
         </BrowserRouter>
       </div>
     );
   }
 }
+
+const NoNavbarContainer = () => {
+  return (
+    <div>
+      {/* <Navbar />  */}
+      <Route exact path="/" component={Dashboard}></Route>
+    </div>
+  );
+};
+const NavbarContainer = () => {
+  return (
+    <div>
+      <Navbar />
+      <Route exact path="/create" component={CreatePage}></Route>
+      <Route exact path="/create/set" component={CreateSet}></Route>
+      <Route exact path="/sets" component={ViewSets}></Route>
+      <Route exact path="/view/set" component={ViewSet}></Route>
+      <Route exact path="/profile" component={Profile}></Route>
+    </div>
+  );
+};
+
 export default withAuthenticator(App);

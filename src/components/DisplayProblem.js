@@ -12,7 +12,9 @@ class DisplayProblem extends Component {
     showAlert: false,
     showTimer: false,
     showError: false,
-    times: []
+    times: [],
+    firstEntry: true,
+    submit: false
   };
 
   render() {
@@ -55,6 +57,10 @@ class DisplayProblem extends Component {
         showError: false
       });
       this.props.closeModal();
+      // User has entered a new time, so we refresh
+      if (this.state.submit) {
+        window.location.reload();
+      }
     };
     // Toggles the alert in the modal
     let toggleAlert = alert => {
@@ -83,23 +89,51 @@ class DisplayProblem extends Component {
           date: date
         };
         // GraphQL call to push data to AWS DynamoDB
-        API.graphql(graphqlOperation(mutations.createTime, { input: setData }));
-        $(".problem-input").hide();
-
-        let newTimes = this.state.times;
-        newTimes.push(setData);
-        this.setState({
-          showTimer: false,
-          showAlert: false,
-          times: newTimes
+        API.graphql(
+          graphqlOperation(mutations.createTime, { input: setData })
+        ).then(() => {
+          $(".problem-input").hide();
+          this.setState({
+            showTimer: false,
+            showAlert: false,
+            submit: true
+          });
+          this.props.showProblem(
+            this.props.id,
+            this.props.setID,
+            this.props.title,
+            this.props.url,
+            this.props.level,
+            this.props.time
+          );
+          // Function used to update the best time for a given problem and send to DynamoDB
+          updateBestTime(time);
         });
-        this.props.showProblem(
-          this.props.id,
-          this.props.title,
-          this.props.url,
-          this.props.level,
-          this.props.time
+      }
+    };
+
+    // Function used to update the best time for a given problem and send to DynamoDB
+    let updateBestTime = time => {
+      // Update best time if it is faster than the previous attempts
+      if (
+        (this.props.time === "0" && this.state.firstEntry) ||
+        time < this.props.time
+      ) {
+        let problemData = {
+          id: this.props.id,
+          setID: this.props.setID,
+          title: this.props.title,
+          url: this.props.url,
+          level: this.props.level,
+          completed: this.props.completed,
+          time: time
+        };
+        API.graphql(
+          graphqlOperation(mutations.updateProblem, { input: problemData })
         );
+        this.setState({
+          firstEntry: false
+        });
       }
     };
 

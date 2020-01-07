@@ -147,6 +147,7 @@ class CreateSet extends Component {
         id: this.props.location.state.setID,
         author: this.props.location.state.author,
         title: this.props.location.state.title,
+        description: this.props.location.state.description,
         company: company
       };
       // GraphQL call to push data to AWS DynamoDB

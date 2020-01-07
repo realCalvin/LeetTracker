@@ -24,7 +24,13 @@ code {
   padding-top: 10px !important;
 }
 .header-spacing {
-  padding: 50px 0px 25px 0px !important;
+  padding: 50px 0px 5px 0px !important;
+}
+
+/* DASHBOARD CSS */
+#landing-page {
+  height: 100vh;
+  background-color: rgb(54, 54, 54);
 }
 
 /* NAVBAR CSS */

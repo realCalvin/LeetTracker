@@ -30,16 +30,19 @@ class ViewSets extends Component {
   }
 
   render() {
-    let ViewSets = (id, title, company) => {
+    let ViewSets = (id, title, company, description) => {
       this.props.history.push({
         pathname: "/view/set",
         state: {
           id: id,
           title: title,
-          company: company
+          company: company,
+          description: description
         }
       });
     };
+
+    // Function to query for company name & image
     let companyImage = company => {
       if (company === "No Company") {
         return "No Company";
@@ -57,6 +60,7 @@ class ViewSets extends Component {
       }
     };
     let sets = this.state.userSets.map(set => {
+      // Set the company image for a set
       let companyName = companyImage(set.company);
       let otherCompany = false;
       if (
@@ -70,6 +74,7 @@ class ViewSets extends Component {
       ) {
         otherCompany = true;
       }
+      console.log(set);
       return (
         <Card className="set-card" key={set.id} style={{ width: "15rem" }}>
           <Card.Img
@@ -91,7 +96,7 @@ class ViewSets extends Component {
               className="view-sets-btn"
               variant="dark"
               onClick={() => {
-                ViewSets(set.id, set.title, set.company);
+                ViewSets(set.id, set.title, set.company, set.description);
               }}
             >
               View Set
