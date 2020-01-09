@@ -1,3 +1,6 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
   overflow-x: hidden;
   padding: 0;
@@ -28,6 +31,11 @@ code {
 }
 
 /* DASHBOARD CSS */
+#landing-navbar {
+  width: 100%;
+  position: absolute;
+  color: white !important;
+}
 #landing-page {
   height: 100vh;
   display: relative;
@@ -64,7 +72,7 @@ code {
   height: 450px;
 }
 #landing-pic2 {
-  height: 500px;
+  height: 400px;
 }
 #landing-page2 {
   height: 100vh;
@@ -73,11 +81,63 @@ code {
   overflow: hidden;
   padding-top: 150px;
 }
+#landing-pic3 {
+  height: 300px;
+  display: none;
+  margin-left: auto;
+  margin-right: auto;
+}
 #landing-description {
   text-align: center;
 }
 #landing-description ul {
   list-style-type: none;
+}
+#landing-description2 .nav {
+  margin-top: 70px;
+  width: 70%;
+}
+#landing-description2 .tab-content {
+  width: 70%;
+  font-weight: 450;
+  letter-spacing: 0.065em;
+}
+#landing-progress {
+  margin-top: 15px;
+}
+.nav-tabs a {
+  font-weight: 550;
+  font-size: 24px;
+}
+.tab-content-description {
+  float: left;
+  padding: 20px;
+}
+.contact-page {
+  height: 70vh;
+  color: white;
+  background-color: rgb(54, 54, 54);
+}
+#contact-us {
+  text-align: center;
+}
+#contact-label h1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 15px;
+}
+#contact-container {
+  padding-top: 50px;
+}
+#contact-form {
+  width: 50%;
+}
+#contact-us .form-group {
+  width: 100% !important;
+}
+#form-textarea {
+  height: 175px;
 }
 .wave {
   position: absolute;
@@ -144,6 +204,9 @@ code {
 }
 
 /* NAVBAR CSS */
+.bg-dark {
+  background-color: rgb(54, 54, 54) !important;
+}
 .navbar-link {
   color: grey;
   padding: 0px 10px;
@@ -270,5 +333,31 @@ code {
   }
   #landing-pic1 {
     height: 300px;
+  }
+  #landing-description1 {
+    display: none;
+  }
+  #landing-page2 {
+    height: 105vh;
+    padding-top: 0px;
+  }
+  #landing-pic3 {
+    display: block;
+  }
+  #landing-description2 .nav {
+    width: 100%;
+  }
+  #landing-description2 .tab-content {
+    width: 100%;
+    font-weight: 450;
+    letter-spacing: 0.065em;
+  }
+  .nav-tabs a {
+    font-weight: 550;
+    font-size: 20px;
+  }
+  #contact-form {
+    margin: 0 25px;
+    width: 100%;
   }
 }

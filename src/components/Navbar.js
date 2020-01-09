@@ -16,13 +16,10 @@ const NavbarC = () => {
     // Navbar that displays on every page
     <div id="Navbar">
       <Navbar bg="dark" expand="lg" variant="dark">
-        <Navbar.Brand href="/">LeetCode</Navbar.Brand>
+        <Navbar.Brand href="/">LeetTracker</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link className="navbar-link" to="/">
-              Home
-            </Link>
             <Link className="navbar-link" to="/create">
               Create
             </Link>

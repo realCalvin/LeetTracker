@@ -32,7 +32,6 @@ class App extends Component {
 const NoNavbarContainer = () => {
   return (
     <div>
-      {/* <Navbar />  */}
       <Route exact path="/" component={Dashboard}></Route>
     </div>
   );
