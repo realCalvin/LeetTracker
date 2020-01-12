@@ -39,7 +39,7 @@ class Landing extends Component {
     // Function to log out current user
     const logOut = () => {
       Auth.signOut()
-        .then(data => console.log(data))
+        .then(window.location.reload())
         .catch(err => console.log(err));
     };
     return (
@@ -49,7 +49,11 @@ class Landing extends Component {
           className="navbar transparent navbar-inverse"
           variant="dark"
         >
-          <Navbar.Brand>LeetTracker</Navbar.Brand>
+          <Navbar.Brand>
+            <a href="/" className="navbar-brand">
+              LeetTracker
+            </a>
+          </Navbar.Brand>
           {this.state.user ? (
             <Nav className="mr-auto">
               <Link className="navbar-link" to="/dashboard">
@@ -75,10 +79,10 @@ class Landing extends Component {
               </Link>
             ) : (
               <div>
-                <Link className="navbar-link" to="/sets">
+                <Link className="navbar-link" to="/login">
                   Login
                 </Link>
-                <Link className="navbar-link" to="/profile">
+                <Link className="navbar-link" to="/register">
                   Register
                 </Link>
               </div>

@@ -14,7 +14,7 @@ class App extends Component {
         <BrowserRouter>
           <Switch>
             {/* User does not need to be logged in */}
-            <Route exact path="/" component={NotProtectedRoutes} />
+            <Route component={NotProtectedRoutes} />
             {/* User needs to be logged in */}
             <Route component={ProtectedRoutes} />
           </Switch>

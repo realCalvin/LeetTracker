@@ -215,6 +215,63 @@ code {
   text-decoration: none;
   color: rgb(172, 172, 172);
 }
+.navbar-brand {
+  color: white;
+}
+.navbar-brand:hover {
+  text-decoration: none;
+}
+
+/* SIGN IN CSS */
+#login-label h1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 15px;
+}
+#login-container {
+  padding-top: 150px;
+}
+#login-form {
+  width: 30%;
+}
+#login-us .form-group {
+  width: 100% !important;
+}
+#form-textarea {
+  height: 175px;
+}
+#login-small {
+  padding: 15px;
+}
+#login-small a:hover {
+  text-decoration: none;
+  color: rgb(78, 175, 255);
+}
+
+/* SIGN UP CSS */
+#register-label h1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 15px;
+}
+#register-container {
+  padding-top: 150px;
+}
+#register-form {
+  width: 40%;
+}
+#register-us .form-group {
+  width: 100% !important;
+}
+#register-small {
+  padding: 15px;
+}
+#register-small a:hover {
+  text-decoration: none;
+  color: rgb(78, 175, 255);
+}
 
 /* CreateSet CSS */
 .input-group {
@@ -359,5 +416,19 @@ code {
   #contact-form {
     margin: 0 25px;
     width: 100%;
+  }
+  #login-form {
+    margin: 0 25px;
+    width: 100%;
+  }
+  #register-form {
+    margin: 0 25px;
+    width: 100%;
+  }
+  .register-page {
+    height: 120vh !important;
+  }
+  .signup-wave {
+    display: none;
   }
 }
