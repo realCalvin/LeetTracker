@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-// eslint-disable-next-line
 import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
 import ProtectedRoutes from "./ProtectedRoutes";
@@ -14,8 +13,10 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={ProtectedRoutes} />
-            <Route component={NotProtectedRoutes} />
+            {/* User does not need to be logged in */}
+            <Route exact path="/" component={NotProtectedRoutes} />
+            {/* User needs to be logged in */}
+            <Route component={ProtectedRoutes} />
           </Switch>
         </BrowserRouter>
       </div>

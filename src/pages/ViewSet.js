@@ -2,10 +2,16 @@ import React, { Component } from "react";
 import "../index.css";
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../graphql/queries";
-import { Row, Jumbotron } from "react-bootstrap";
+import {
+  Row,
+  Jumbotron,
+  Button,
+  Popover,
+  OverlayTrigger
+} from "react-bootstrap";
 import DisplaySetProblems from "../components/DisplaySetProblems";
 
-class ViewSets extends Component {
+class ViewSet extends Component {
   state = {
     problems: []
   };
@@ -33,6 +39,20 @@ class ViewSets extends Component {
     }
   }
   render() {
+    const popover = (
+      <Popover id="popover-basic">
+        <Popover.Title as="h3">Send Link To Share!</Popover.Title>
+        <Popover.Content>
+          <a
+            href={
+              "http://localhost:3000/view/set/" + this.props.location.state.id
+            }
+          >
+            {"http://localhost:3000/view/set/" + this.props.location.state.id}
+          </a>
+        </Popover.Content>
+      </Popover>
+    );
     return (
       <div className="Profile">
         <Jumbotron>
@@ -42,11 +62,18 @@ class ViewSets extends Component {
           <Row className="card-row">
             <p>{this.props.location.state.description}</p>
           </Row>
+          <Row className="card-row">
+            <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+              <Button variant="dark" size="sm">
+                <i className="fa fa-share"></i> Share
+              </Button>
+            </OverlayTrigger>
+          </Row>
         </Jumbotron>
         {/* Display the set's problems */}
-        <DisplaySetProblems problems={this.state.problems} />
+        <DisplaySetProblems problems={this.state.problems} viewOnly={false} />
       </div>
     );
   }
 }
-export default ViewSets;
+export default ViewSet;

@@ -18,6 +18,9 @@ class DisplaySetProblems extends Component {
     level: "",
     time: ""
   };
+  async componentDidMount() {
+    console.log(this.props.problems);
+  }
   async componentDidUpdate() {
     if (this.state.loaded === false) {
       this.setState({
@@ -127,29 +130,37 @@ class DisplaySetProblems extends Component {
               </a>
             </td>
             <td>{level}</td>
-            <td>{problem.time}</td>
-            <td>
-              <Button
-                variant="outline-dark"
-                size="sm"
-                id={problem.id}
-                onClick={() => {
-                  showProblem(
-                    problem.id,
-                    problem.setID,
-                    problem.title,
-                    problem.url,
-                    problem.level,
-                    problem.time
-                  );
-                }}
-              >
-                View
-              </Button>
-            </td>
+            {/* Display the best time and "view" if it was not shared by the user via a link */}
+            {this.props.viewOnly ? (
+              <></>
+            ) : (
+              <>
+                <td>{problem.time}</td>
+                <td>
+                  <Button
+                    variant="outline-dark"
+                    size="sm"
+                    id={problem.id}
+                    onClick={() => {
+                      showProblem(
+                        problem.id,
+                        problem.setID,
+                        problem.title,
+                        problem.url,
+                        problem.level,
+                        problem.time
+                      );
+                    }}
+                  >
+                    View
+                  </Button>
+                </td>
+              </>
+            )}
           </tr>
         );
       });
+      console.log(problems);
     }
 
     return (
@@ -160,8 +171,14 @@ class DisplaySetProblems extends Component {
               <tr>
                 <th>Problems</th>
                 <th>Difficulty</th>
-                <th>Best Time</th>
-                <th>View</th>
+                {this.props.viewOnly ? (
+                  <></>
+                ) : (
+                  <>
+                    <th>Best Time</th>
+                    <th>View</th>
+                  </>
+                )}
               </tr>
             </thead>
             <tbody>{problems}</tbody>
