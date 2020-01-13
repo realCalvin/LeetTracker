@@ -30,7 +30,61 @@ code {
   padding: 50px 0px 5px 0px !important;
 }
 
-/* DASHBOARD CSS */
+/* SIGN IN/UP CSS */
+#login-modal .auth-label {
+  color: black;
+  font-size: 24px;
+}
+#login-modal .auth-label:hover {
+  text-decoration: none;
+  font-size: 25px;
+}
+#register-modal .auth-label {
+  color: black;
+  font-size: 24px;
+}
+#register-modal .auth-label:hover {
+  text-decoration: none;
+  font-size: 25px;
+}
+#confirm-modal .auth-label {
+  color: black;
+  font-size: 24px;
+}
+#confirm-modal .auth-label:hover {
+  text-decoration: none;
+  font-size: 25px;
+}
+.password-error {
+  color: red;
+}
+.small-link {
+  padding: 0 0 3px 0;
+  font-size: 16px;
+}
+.underline {
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: black 4px solid;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 5px 10px;
+  animation: auth-btns 2.5s infinite;
+}
+@keyframes auth-btns {
+  0% {
+    border-color: black;
+  }
+  50% {
+    border-color: rgb(180, 180, 180);
+  }
+  100% {
+    border-color: black;
+  }
+}
+
+/* LANDING PAGE CSS */
 #landing-navbar {
   width: 100%;
   position: absolute;
@@ -75,7 +129,8 @@ code {
   height: 400px;
 }
 #landing-page2 {
-  height: 100vh;
+  min-height: 100vh;
+  height: fit-content;
   position: relative;
   width: 100%;
   overflow: hidden;
@@ -114,7 +169,8 @@ code {
   padding: 20px;
 }
 .contact-page {
-  height: 70vh;
+  min-height: 70vh;
+  height: fit-content;
   color: white;
   background-color: rgb(54, 54, 54);
 }
@@ -220,57 +276,6 @@ code {
 }
 .navbar-brand:hover {
   text-decoration: none;
-}
-
-/* SIGN IN CSS */
-#login-label h1 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 15px;
-}
-#login-container {
-  padding-top: 150px;
-}
-#login-form {
-  width: 30%;
-}
-#login-us .form-group {
-  width: 100% !important;
-}
-#form-textarea {
-  height: 175px;
-}
-#login-small {
-  padding: 15px;
-}
-#login-small a:hover {
-  text-decoration: none;
-  color: rgb(78, 175, 255);
-}
-
-/* SIGN UP CSS */
-#register-label h1 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 15px;
-}
-#register-container {
-  padding-top: 150px;
-}
-#register-form {
-  width: 40%;
-}
-#register-us .form-group {
-  width: 100% !important;
-}
-#register-small {
-  padding: 15px;
-}
-#register-small a:hover {
-  text-decoration: none;
-  color: rgb(78, 175, 255);
 }
 
 /* CreateSet CSS */
@@ -417,18 +422,14 @@ code {
     margin: 0 25px;
     width: 100%;
   }
-  #login-form {
-    margin: 0 25px;
-    width: 100%;
+}
+
+/* mobile devices */
+@media only screen and (max-width: 390px) {
+  .wave {
+    display: none;
   }
-  #register-form {
-    margin: 0 25px;
-    width: 100%;
-  }
-  .register-page {
-    height: 120vh !important;
-  }
-  .signup-wave {
+  .dark-wave {
     display: none;
   }
 }

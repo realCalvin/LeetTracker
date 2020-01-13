@@ -16,6 +16,9 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
+import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import ConfirmCode from "./ConfirmCode";
 
 class Landing extends Component {
   componentDidMount() {
@@ -28,7 +31,10 @@ class Landing extends Component {
   }
   state = {
     key: "home",
-    user: null
+    user: null,
+    showSignIn: false,
+    showSignUp: false,
+    showConfirm: false
   };
   render() {
     const setKey = k => {
@@ -42,8 +48,67 @@ class Landing extends Component {
         .then(window.location.reload())
         .catch(err => console.log(err));
     };
+
+    // Open and close sign in modal
+    const handleSignInOpen = () => {
+      this.setState({
+        showSignIn: true,
+        showSignUp: false
+      });
+    };
+    const handleSignInClose = () => {
+      this.setState({
+        showSignIn: false
+      });
+    };
+
+    // Open and close sign up modal
+    const handleSignUpOpen = () => {
+      this.setState({
+        showSignUp: true,
+        showSignIn: false,
+        showConfirm: false
+      });
+    };
+    const handleSignUpClose = () => {
+      this.setState({
+        showSignUp: false
+      });
+    };
+
+    // Open and close code confirmation modal
+    const handleConfirmOpen = () => {
+      this.setState({
+        showConfirm: true,
+        showSignUp: false
+      });
+    };
+    const handleConfirmClose = () => {
+      this.setState({
+        showConfirm: false
+      });
+    };
+
     return (
       <div className="Landing">
+        {/* Sign in and sign up modals below */}
+        <SignIn
+          showSignIn={this.state.showSignIn}
+          handleSignInClose={handleSignInClose}
+          handleSignUpOpen={handleSignUpOpen}
+        />
+        <SignUp
+          showSignUp={this.state.showSignUp}
+          handleSignUpClose={handleSignUpClose}
+          handleSignInOpen={handleSignInOpen}
+          handleConfirmOpen={handleConfirmOpen}
+        />
+        <ConfirmCode
+          showConfirm={this.state.showConfirm}
+          handleSignUpOpen={handleSignUpOpen}
+          handleConfirmClose={handleConfirmClose}
+          handleConfirmOpen={handleConfirmOpen}
+        />
         <Navbar
           id="landing-navbar"
           className="navbar transparent navbar-inverse"
@@ -79,10 +144,10 @@ class Landing extends Component {
               </Link>
             ) : (
               <div>
-                <Link className="navbar-link" to="/login">
+                <Link to="#" className="navbar-link" onClick={handleSignInOpen}>
                   Login
                 </Link>
-                <Link className="navbar-link" to="/register">
+                <Link to="#" className="navbar-link" onClick={handleSignUpOpen}>
                   Register
                 </Link>
               </div>

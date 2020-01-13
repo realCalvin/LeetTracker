@@ -1,77 +1,77 @@
 import React, { Component } from "react";
-import { Row, Button, Container, Form, Navbar } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import { Auth } from "aws-amplify";
+import $ from "jquery";
 
 class SignIn extends Component {
-  componentDidMount() {
-    // check if user is already signed in.. if so, redirect to landing page
-    Auth.currentSession().then(data => {
-      let token = data.getIdToken();
-      if (token.payload["cognito:username"]) {
-        this.props.history.push("/");
-      }
-    });
+  // Function to check if a user is authenticated
+  async isAuthenticated() {
+    await Auth.currentAuthenticatedUser()
+      .then(user => window.location.reload())
+      .catch(err => console.log(err));
   }
   render() {
-    return (
-      <div className="Landing">
-        <Navbar
-          id="landing-navbar"
-          className="navbar transparent navbar-inverse"
-          variant="dark"
-        >
-          <Navbar.Brand>
-            <a href="/" className="navbar-brand">
-              LeetTracker
-            </a>
-          </Navbar.Brand>
-        </Navbar>
-        <div id="landing-page">
-          <div className="wave wave1" id="nav-wave"></div>
-          <div className="wave wave2"></div>
-          <div className="wave wave3"></div>
-          <div className="contact-page">
-            <Container id="login-container">
-              <Row className="" id="login-label">
-                <h1>Login</h1>
-              </Row>
-              <Row id="login-us" className="justify-content-md-center">
-                <Form id="login-form">
-                  <Form.Group controlId="formBasicEmail">
-                    <Form.Label>Username</Form.Label>
-                    <Form.Control
-                      type="text"
-                      placeholder="Enter Username"
-                      name="username"
-                    />
-                    <Form.Text className="text-muted">
-                      We'll never share your email with anyone else.
-                    </Form.Text>
-                  </Form.Group>
+    // Function listens to login form and logs in if user is valid
+    let handleLogin = e => {
+      e.preventDefault();
+      let data = $("#login-form").serializeArray();
+      console.log(data[0].value);
+      let username = data[0].value;
+      let password = data[1].value;
+      Auth.signIn(username, password)
+        .then(res => this.isAuthenticated())
+        .catch(err => alert(err.message));
+    };
 
-                  <Form.Group controlId="formBasicPassword">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                      type="password"
-                      placeholder="Password"
-                      name="password"
-                    />
-                  </Form.Group>
-                  <Button variant="primary" type="submit" size="sm">
-                    Login
-                  </Button>
-                  <Row id="login-small">
-                    <small>
-                      <a href="/forgot">Forgot password</a> ·{" "}
-                      <a href="/register">Register</a>
-                    </small>
-                  </Row>
-                </Form>
-              </Row>
-            </Container>
-          </div>
-        </div>
-      </div>
+    return (
+      <Modal
+        show={this.props.showSignIn}
+        onHide={this.props.handleSignInClose}
+        id="login-modal"
+      >
+        <Form id="login-form" onSubmit={handleLogin}>
+          <Modal.Header closeButton>
+            <Modal.Title>
+              <Button variant="link" className="underline auth-label">
+                Login
+              </Button>
+              <Button
+                variant="link"
+                onClick={this.props.handleSignUpOpen}
+                className="auth-label"
+              >
+                Register
+              </Button>
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form.Group controlId="formBasicUsername1">
+              <Form.Label>Username</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Username"
+                name="username"
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword1">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                placeholder="Enter Password"
+                name="password"
+                required
+              />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary">Forgot Password</Button>
+            <Button variant="primary" type="submit">
+              Login
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
     );
   }
 }
