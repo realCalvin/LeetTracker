@@ -1,27 +1,93 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
-import ProtectedRoutes from "./ProtectedRoutes";
-import NotProtectedRoutes from "./NotProtectedRoutes";
+import Landing from "./pages/Landing";
+import Profile from "./pages/Profile";
+import CreatePage from "./pages/CreatePage";
+import CreateSet from "./pages/CreateSet";
+import ViewSets from "./pages/ViewSets";
+import ViewSet from "./pages/ViewSet";
+import ViewSetId from "./pages/VietSetId";
+import Error from "./pages/Error";
+import { Auth } from "aws-amplify";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
 Amplify.configure(awsconfig);
 
-class App extends Component {
-  render() {
-    return (
+function App() {
+  const [isAuthenticating, setIsAuthenticating] = useState(true);
+  const [isAuthenticated, userHasAuthenticated] = useState(false);
+
+  useEffect(() => {
+    onLoad();
+    // eslint-disable-next-line
+  }, []);
+
+  async function onLoad() {
+    try {
+      await Auth.currentSession();
+      userHasAuthenticated(true);
+    } catch (e) {
+      if (e !== "No current user") {
+        alert(e);
+      }
+    }
+    console.log(isAuthenticating);
+    setIsAuthenticating(!isAuthenticating);
+  }
+
+  return (
+    !isAuthenticating && (
       <div className="App">
         <BrowserRouter>
           <Switch>
             {/* User does not need to be logged in */}
-            <Route component={NotProtectedRoutes} />
+            <Route exact path="/" component={Landing}></Route>
             {/* User needs to be logged in */}
-            <Route component={ProtectedRoutes} />
+            <AuthenticatedRoute
+              path="/create"
+              exact
+              component={CreatePage}
+              appProps={{ isAuthenticated, userHasAuthenticated }}
+            />
+            <AuthenticatedRoute
+              path="/create/set"
+              exact
+              component={CreateSet}
+              appProps={{ isAuthenticated, userHasAuthenticated }}
+            />
+            <AuthenticatedRoute
+              path="/sets"
+              exact
+              component={ViewSets}
+              appProps={{ isAuthenticated, userHasAuthenticated }}
+            />
+            <AuthenticatedRoute
+              path="/view/set"
+              exact
+              component={ViewSet}
+              appProps={{ isAuthenticated, userHasAuthenticated }}
+            />
+            <AuthenticatedRoute
+              path="/profile"
+              exact
+              component={Profile}
+              appProps={{ isAuthenticated, userHasAuthenticated }}
+            />
+            <AuthenticatedRoute
+              path="/view/set/:id"
+              exact
+              component={ViewSetId}
+              appProps={{ isAuthenticated, userHasAuthenticated }}
+            />
+            <Route path="/*" component={Error} />
           </Switch>
         </BrowserRouter>
       </div>
-    );
-  }
+    )
+  );
 }
 
 export default App;

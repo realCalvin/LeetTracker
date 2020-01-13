@@ -25,7 +25,7 @@ class ConfirmCode extends Component {
         <Form id="confirm-form" onSubmit={handleConfirm}>
           <Modal.Header closeButton>
             <Modal.Title>
-              <Button variant="link" className="auth-label">
+              <Button variant="link" className="underline auth-label">
                 Confirm Account
               </Button>
             </Modal.Title>

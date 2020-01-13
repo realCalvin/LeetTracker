@@ -59,16 +59,16 @@ code {
   color: red;
 }
 .small-link {
-  padding: 0 0 3px 0;
-  font-size: 16px;
+  padding: 0 0 3px 0 !important;
+  font-size: 16px !important;
 }
 .underline {
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: black 4px solid;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
+  border-bottom: black 2px solid !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
   padding: 5px 10px;
   animation: auth-btns 2.5s infinite;
 }

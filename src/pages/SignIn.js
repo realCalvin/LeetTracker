@@ -15,7 +15,6 @@ class SignIn extends Component {
     let handleLogin = e => {
       e.preventDefault();
       let data = $("#login-form").serializeArray();
-      console.log(data[0].value);
       let username = data[0].value;
       let password = data[1].value;
       Auth.signIn(username, password)

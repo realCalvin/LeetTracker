@@ -22,6 +22,13 @@ import ConfirmCode from "./ConfirmCode";
 
 class Landing extends Component {
   componentDidMount() {
+    // view parameters to see if it has been redirected to pop open sign in
+    if (this.props.location.search === "?redirect=signin") {
+      this.setState({
+        showSignIn: true
+      });
+    }
+
     Auth.currentSession().then(data => {
       let token = data.getIdToken();
       this.setState({
