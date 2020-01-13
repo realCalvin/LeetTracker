@@ -12,7 +12,6 @@ import ViewSetId from "./pages/VietSetId";
 import Error from "./pages/Error";
 import { Auth } from "aws-amplify";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
-import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 
 Amplify.configure(awsconfig);
 

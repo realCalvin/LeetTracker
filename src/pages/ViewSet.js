@@ -54,7 +54,7 @@ class ViewSet extends Component {
       </Popover>
     );
     return (
-      <div className="Profile">
+      <div className="ViewSet spacing">
         <Jumbotron>
           <Row className="card-row">
             <h1>{this.props.location.state.title}</h1>

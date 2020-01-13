@@ -92,7 +92,7 @@ class ViewSet extends Component {
       }, 600);
     };
     return (
-      <div className="Profile">
+      <div className="ViewSetID spacing">
         <Jumbotron>
           <Row className="card-row">
             <h1>{this.state.title}</h1>

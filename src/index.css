@@ -11,7 +11,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
@@ -24,12 +23,15 @@ code {
   transition: 0.4s;
 }
 .spacing {
-  padding-top: 10px !important;
+  padding-top: 80px !important;
 }
 .header-spacing {
   padding: 50px 0px 5px 0px !important;
 }
-
+#icon {
+  height: 30px;
+  margin: 0 10px;
+}
 /* SIGN IN/UP CSS */
 #login-modal .auth-label {
   color: black;
@@ -260,7 +262,11 @@ code {
 }
 
 /* NAVBAR CSS */
-.bg-dark {
+.navbar-brand a {
+  padding-bottom: 3px;
+  font-size: 22px;
+}
+.navbar-dark {
   background-color: rgb(54, 54, 54) !important;
 }
 .navbar-link {
@@ -280,7 +286,7 @@ code {
 
 /* CreateSet CSS */
 .input-group {
-  width: 60%;
+  width: 60% !important;
 }
 .problem-card {
   text-align: center;
@@ -294,13 +300,13 @@ code {
   justify-content: center;
 }
 .card-level-1 {
-  background-color: #5cb85c;
+  background-color: #5cb85c !important;
 }
 .card-level-2 {
-  background-color: #f0ad4e;
+  background-color: #f0ad4e !important;
 }
 .card-level-3 {
-  background-color: #d9534f;
+  background-color: #d9534f !important;
 }
 #checkmark-div {
   position: fixed;
@@ -363,8 +369,8 @@ code {
   width: 70% !important;
 }
 .badge-warning {
-  background-color: #f0ad4e;
-  color: white;
+  background-color: #f0ad4e !important;
+  color: white !important;
 }
 
 /* DISPLAY PROBLEM CSS */

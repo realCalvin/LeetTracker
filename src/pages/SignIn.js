@@ -7,7 +7,7 @@ class SignIn extends Component {
   // Function to check if a user is authenticated
   async isAuthenticated() {
     await Auth.currentAuthenticatedUser()
-      .then(user => window.location.reload())
+      .then(user => (window.location = "/"))
       .catch(err => console.log(err));
   }
   render() {

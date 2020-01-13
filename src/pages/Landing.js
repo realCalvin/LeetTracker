@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import pic1 from "../components/img/landing1.svg";
 import pic2 from "../components/img/landing2.png";
+import icon from "../components/img/icon.png";
 import {
   Row,
   Col,
@@ -123,22 +124,19 @@ class Landing extends Component {
         >
           <Navbar.Brand>
             <a href="/" className="navbar-brand">
-              LeetTracker
+              <Image src={icon} alt="Icon" fluid id="icon" /> LeetTracker
             </a>
           </Navbar.Brand>
           {this.state.user ? (
             <Nav className="mr-auto">
-              <Link className="navbar-link" to="/dashboard">
-                Dashboard
+              <Link className="navbar-link" to="/">
+                Home
               </Link>
               <Link className="navbar-link" to="/create">
                 Create
               </Link>
               <Link className="navbar-link" to="/sets">
                 Sets
-              </Link>
-              <Link className="navbar-link" to="/profile">
-                Profile
               </Link>
             </Nav>
           ) : (
@@ -256,7 +254,7 @@ class Landing extends Component {
                     required
                   />
                 </Form.Group>
-                <Button variant="primary" size="sm" type="submit">
+                <Button variant="outline-light" size="sm" type="submit">
                   Submit
                 </Button>
               </Form>

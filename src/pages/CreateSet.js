@@ -173,7 +173,7 @@ class CreateSet extends Component {
     };
 
     return (
-      <div className="CreateSet">
+      <div className="CreateSet spacing">
         {/* Jumbotron displays the current user's set */}
         <div id="checkmark-div">
           <i id="checkmark" className="fa fa-check"></i>
