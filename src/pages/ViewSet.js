@@ -43,12 +43,8 @@ class ViewSet extends Component {
       <Popover id="popover-basic">
         <Popover.Title as="h3">Send Link To Share!</Popover.Title>
         <Popover.Content>
-          <a
-            href={
-              "http://localhost:3000/view/set/" + this.props.location.state.id
-            }
-          >
-            {"http://localhost:3000/view/set/" + this.props.location.state.id}
+          <a href={"http://localhost:3000/" + this.props.location.state.id}>
+            {"http://localhost:3000/" + this.props.location.state.id}
           </a>
         </Popover.Content>
       </Popover>

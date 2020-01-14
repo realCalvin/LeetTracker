@@ -169,7 +169,9 @@ class CreateSet extends Component {
         );
       });
       // Sends user to their sets
-      this.props.history.push("/sets");
+      setTimeout(() => {
+        this.props.history.push("/sets");
+      }, 500);
     };
 
     return (

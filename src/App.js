@@ -76,7 +76,7 @@ function App() {
               appProps={{ isAuthenticated, userHasAuthenticated }}
             />
             <AuthenticatedRoute
-              path="/view/set/:id"
+              path="/:user/:id"
               exact
               component={ViewSetId}
               appProps={{ isAuthenticated, userHasAuthenticated }}

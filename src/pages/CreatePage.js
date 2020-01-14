@@ -26,6 +26,7 @@ class CreatePage extends Component {
             author: token.payload["cognito:username"],
             setID:
               token.payload["cognito:username"] +
+              "/" +
               Math.floor(Math.random() * 10000000)
           }
         });

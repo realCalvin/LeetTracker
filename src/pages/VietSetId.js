@@ -27,7 +27,7 @@ class ViewSet extends Component {
     // Retrieve title and description of the set
     let infoSet = await API.graphql(
       graphqlOperation(queries.getSet, {
-        id: this.props.match.params.id
+        id: this.props.match.params.user + "/" + this.props.match.params.id
       })
     );
     if (infoSet.data.getSet === null) {
@@ -40,7 +40,8 @@ class ViewSet extends Component {
           limit: 1000,
           filter: {
             setID: {
-              eq: this.props.match.params.id
+              eq:
+                this.props.match.params.user + "/" + this.props.match.params.id
             }
           }
         })
@@ -60,7 +61,8 @@ class ViewSet extends Component {
   render() {
     let cloneSet = () => {
       // Data for the current user's set
-      let setId = this.state.currentUser + Math.floor(Math.random() * 10000000);
+      let setId =
+        this.state.currentUser + "/" + Math.floor(Math.random() * 10000000);
       let setData = {
         id: setId,
         author: this.state.currentUser,
