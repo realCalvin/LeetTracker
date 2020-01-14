@@ -121,43 +121,55 @@ class Landing extends Component {
           id="landing-navbar"
           className="navbar transparent navbar-inverse"
           variant="dark"
+          expand="lg"
         >
           <Navbar.Brand>
             <a href="/" className="navbar-brand">
               <Image src={icon} alt="Icon" fluid id="icon" /> LeetTracker
             </a>
           </Navbar.Brand>
-          {this.state.user ? (
-            <Nav className="mr-auto">
-              <Link className="navbar-link" to="/">
-                Home
-              </Link>
-              <Link className="navbar-link" to="/create">
-                Create
-              </Link>
-              <Link className="navbar-link" to="/sets">
-                Sets
-              </Link>
-            </Nav>
-          ) : (
-            ""
-          )}
-          <Nav className="ml-auto">
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
             {this.state.user ? (
-              <Link className="navbar-link" onClick={logOut} to="">
-                Logout
-              </Link>
+              <Nav className="mr-auto">
+                <Link className="navbar-link" to="/">
+                  Home
+                </Link>
+                <Link className="navbar-link" to="/create">
+                  Create
+                </Link>
+                <Link className="navbar-link" to="/sets">
+                  Sets
+                </Link>
+              </Nav>
             ) : (
-              <div>
-                <Link to="#" className="navbar-link" onClick={handleSignInOpen}>
-                  Login
-                </Link>
-                <Link to="#" className="navbar-link" onClick={handleSignUpOpen}>
-                  Register
-                </Link>
-              </div>
+              ""
             )}
-          </Nav>
+            <Nav className="ml-auto">
+              {this.state.user ? (
+                <Link className="navbar-link" onClick={logOut} to="">
+                  Logout
+                </Link>
+              ) : (
+                <>
+                  <Link
+                    to="#"
+                    className="navbar-link"
+                    onClick={handleSignInOpen}
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="#"
+                    className="navbar-link"
+                    onClick={handleSignUpOpen}
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
         </Navbar>
         <div id="landing-page">
           <div className="wave wave1" id="nav-wave"></div>

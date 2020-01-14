@@ -14,18 +14,28 @@ import $ from "jquery";
 import { API, graphqlOperation } from "aws-amplify";
 import * as mutations from "../graphql/mutations";
 
-class CreateSet extends Component {
+class UpdateSet extends Component {
   state = {
     problems: data,
+    id: null,
+    title: null,
+    company: null,
+    description: null,
     currentPage: 1,
     problemsPerPage: 54,
     set: []
   };
   componentDidMount() {
     if (this.props.location.state === undefined) {
-      this.props.history.push({ pathname: "/create" });
+      this.props.history.push({ pathname: "/sets" });
+    } else {
+      this.setState({
+        id: this.props.location.state.setID,
+        title: this.props.location.state.title,
+        company: this.props.location.state.company,
+        description: this.props.location.state.description
+      });
     }
-    console.log(this.props.location.state);
   }
   render() {
     // Variables below are used for pagination on the create set page
@@ -132,31 +142,9 @@ class CreateSet extends Component {
       />
     ));
 
-    // Creates the user set using mutations from graphql
-    let createSet = () => {
-      let company;
-      if (this.props.location.state.company !== "Other") {
-        company = this.props.location.state.company;
-      } else if (
-        this.props.location.state.company === "Other" &&
-        this.props.location.state.other === ""
-      ) {
-        company = "No Company";
-      } else {
-        company = this.props.location.state.other;
-      }
-      // Data for the current user's set
-      let setData = {
-        id: this.props.location.state.setID,
-        author: this.props.location.state.author,
-        title: this.props.location.state.title,
-        description: this.props.location.state.description,
-        company: company
-      };
-      // GraphQL call to push data to AWS DynamoDB
-      API.graphql(graphqlOperation(mutations.createSet, { input: setData }));
-
-      // Connecting the selected LeetCode problems to the newly created set
+    // Add the selected problems into the user's existing set
+    let addProblem = () => {
+      // Connecting the selected LeetCode problems to the existing set
       this.state.set.map(async problem => {
         let problemData = {
           title: problem.title,
@@ -164,7 +152,7 @@ class CreateSet extends Component {
           level: problem.level,
           completed: problem.completed,
           time: problem.time,
-          setID: problem.setID
+          setID: this.state.id
         };
         // GraphQL call to push data to AWS DynamoDB
         API.graphql(
@@ -173,7 +161,15 @@ class CreateSet extends Component {
       });
       // Sends user to their sets
       setTimeout(() => {
-        this.props.history.push("/sets");
+        this.props.history.push({
+          pathname: "/view/set",
+          state: {
+            id: this.state.id,
+            title: this.state.title,
+            company: this.state.company,
+            description: this.state.description
+          }
+        });
       }, 500);
     };
 
@@ -223,8 +219,8 @@ class CreateSet extends Component {
           </Row>
           <Row className="card-row">
             {this.state.set.length ? (
-              <Button variant="dark" onClick={createSet}>
-                Create
+              <Button variant="dark" onClick={addProblem}>
+                Add
               </Button>
             ) : (
               ""
@@ -259,4 +255,4 @@ class CreateSet extends Component {
     );
   }
 }
-export default CreateSet;
+export default UpdateSet;

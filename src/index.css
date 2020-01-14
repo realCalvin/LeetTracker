@@ -1,8 +1,12 @@
 html {
   scroll-behavior: smooth;
+  width: 100% !important;
+
+  overflow-x: hidden;
 }
 body {
   overflow-x: hidden;
+  width: 100% !important;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
@@ -23,7 +27,7 @@ code {
   transition: 0.4s;
 }
 .spacing {
-  padding-top: 80px !important;
+  padding-top: 70px !important;
 }
 .header-spacing {
   padding: 50px 0px 5px 0px !important;
@@ -365,8 +369,17 @@ code {
 }
 
 /* DISPLAY SET PROBLEMS CSS*/
-#view-set-row .table {
-  width: 70% !important;
+#view-set-row form {
+  box-sizing: border-box;
+  width: 70%;
+  overflow-x: auto;
+}
+#table-action-header {
+  padding-right: 10px;
+  width: 7%;
+}
+.table-action-check {
+  text-align: center;
 }
 .badge-warning {
   background-color: #f0ad4e !important;

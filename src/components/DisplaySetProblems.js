@@ -1,9 +1,21 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 import "../index.css";
-import { Row, Button, Table, Spinner, Badge } from "react-bootstrap";
+import {
+  Row,
+  Button,
+  Table,
+  Spinner,
+  Badge,
+  Form,
+  Dropdown,
+  Modal
+} from "react-bootstrap";
 import DisplayProblem from "../components/DisplayProblem";
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../graphql/queries";
+import * as mutations from "../graphql/mutations";
+import $ from "jquery";
 
 class DisplaySetProblems extends Component {
   state = {
@@ -11,6 +23,7 @@ class DisplaySetProblems extends Component {
     times: [],
     loaded: false,
     showModal: false,
+    showDeleteModal: false,
     id: "",
     setID: "",
     title: "",
@@ -95,6 +108,21 @@ class DisplaySetProblems extends Component {
       });
     };
 
+    // Toggle delete modal to close
+    let closeDeleteModal = () => {
+      this.setState({
+        showDeleteModal: false
+      });
+    };
+    // Toggle delete modal to open
+    let openDeleteModal = () => {
+      if ($("#display-set-form").serializeArray().length) {
+        this.setState({
+          showDeleteModal: true
+        });
+      }
+    };
+
     // function used to sort the set of problems via "difficulty level"
     function compare(a, b) {
       const levelA = a.level;
@@ -124,6 +152,9 @@ class DisplaySetProblems extends Component {
         }
         return (
           <tr key={problem.id}>
+            <td className="table-action-check">
+              <Form.Check type="checkbox" name={problem.id} />
+            </td>
             <td>
               <a href={"https://leetcode.com/problems/" + problem.url}>
                 {problem.title}
@@ -160,29 +191,94 @@ class DisplaySetProblems extends Component {
           </tr>
         );
       });
-      console.log(problems);
     }
+
+    // Function reads the checkboxes & handles the deletion from DynamoDB
+    async function handleDelete() {
+      let problems = $("#display-set-form").serializeArray();
+      for (var i = 0; i < problems.length; i++) {
+        await API.graphql(
+          graphqlOperation(mutations.deleteProblem, {
+            input: {
+              id: problems[i].name
+            }
+          })
+        );
+      }
+      window.location.reload();
+    }
+
+    // Function routes the user to an update page where they can select problems to add
+    let handleAdd = () => {
+      console.log(this.props.location.state.id);
+      this.props.history.push({
+        pathname: "/update/set",
+        state: {
+          setID: this.props.location.state.id,
+          title: this.props.location.state.title,
+          company: this.props.location.state.company,
+          description: this.props.location.state.description
+        }
+      });
+    };
 
     return (
       <Row id="view-set-row" className="card-row">
+        <Modal
+          show={this.state.showDeleteModal}
+          onHide={closeDeleteModal}
+          centered
+        >
+          <Modal.Header closeButton>
+            <Modal.Title>Delete</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>Are you sure you want to delete?</Modal.Body>
+          <Modal.Footer>
+            <Button variant="danger" onClick={closeDeleteModal}>
+              No
+            </Button>
+            <Button variant="primary" onClick={handleDelete}>
+              Yes
+            </Button>
+          </Modal.Footer>
+        </Modal>
         {this.state.loaded ? (
-          <Table striped bordered hover id="set-problem-table">
-            <thead>
-              <tr>
-                <th>Problems</th>
-                <th>Difficulty</th>
-                {this.props.viewOnly ? (
-                  <></>
-                ) : (
-                  <>
-                    <th>Best Time</th>
-                    <th>View</th>
-                  </>
-                )}
-              </tr>
-            </thead>
-            <tbody>{problems}</tbody>
-          </Table>
+          <Form id="display-set-form">
+            <Table striped bordered hover id="set-problem-table">
+              <thead>
+                <tr>
+                  <th id="table-action-header">
+                    <Dropdown>
+                      <Dropdown.Toggle
+                        variant="outline-dark"
+                        id="dropdown-basic"
+                        size="sm"
+                      >
+                        Action
+                      </Dropdown.Toggle>
+                      <Dropdown.Menu>
+                        <Dropdown.Item onClick={handleAdd}>Add</Dropdown.Item>
+                        <Dropdown.Item onClick={openDeleteModal}>
+                          Delete
+                        </Dropdown.Item>
+                      </Dropdown.Menu>
+                    </Dropdown>
+                  </th>
+                  <th>Problems</th>
+                  <th>Difficulty</th>
+                  {this.props.viewOnly ? (
+                    <></>
+                  ) : (
+                    <>
+                      <th>Best Time</th>
+                      <th>View</th>
+                    </>
+                  )}
+                </tr>
+              </thead>
+              <tbody>{problems}</tbody>
+            </Table>
+          </Form>
         ) : (
           <Spinner animation="border" variant="dark" />
         )}
@@ -202,4 +298,4 @@ class DisplaySetProblems extends Component {
     );
   }
 }
-export default DisplaySetProblems;
+export default withRouter(DisplaySetProblems);

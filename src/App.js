@@ -6,6 +6,7 @@ import Landing from "./pages/Landing";
 import Profile from "./pages/Profile";
 import CreatePage from "./pages/CreatePage";
 import CreateSet from "./pages/CreateSet";
+import UpdateSet from "./pages/UpdateSet";
 import ViewSets from "./pages/ViewSets";
 import ViewSet from "./pages/ViewSet";
 import ViewSetId from "./pages/VietSetId";
@@ -55,6 +56,12 @@ function App() {
               path="/create/set"
               exact
               component={CreateSet}
+              appProps={{ isAuthenticated, userHasAuthenticated }}
+            />
+            <AuthenticatedRoute
+              path="/update/set"
+              exact
+              component={UpdateSet}
               appProps={{ isAuthenticated, userHasAuthenticated }}
             />
             <AuthenticatedRoute
