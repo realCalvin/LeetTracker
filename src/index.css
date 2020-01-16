@@ -368,6 +368,25 @@ code {
   color: black !important;
 }
 
+/* ADDCOMMENT CSS */
+#add-comment-row form {
+  box-sizing: border-box;
+  width: 50%;
+  overflow-x: auto;
+}
+.comment-date {
+  color: grey;
+  padding-left: 10px;
+}
+.set-comment-row {
+  margin-left: 25%;
+  margin-right: 25%;
+}
+.set-comment {
+  margin: 10px;
+  box-shadow: none !important;
+}
+
 /* DISPLAY SET PROBLEMS CSS*/
 #view-set-row form {
   box-sizing: border-box;
@@ -440,6 +459,13 @@ code {
   #contact-form {
     margin: 0 25px;
     width: 100%;
+  }
+  #add-comment-row form {
+    width: 85%;
+  }
+  .set-comment-row {
+    margin-left: 5%;
+    margin-right: 5%;
   }
 }
 

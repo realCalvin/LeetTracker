@@ -27,6 +27,7 @@ export const createSet = `mutation CreateSet(
       items {
         id
         createdAt
+        date
         setID
         author
         content
@@ -62,6 +63,7 @@ export const updateSet = `mutation UpdateSet(
       items {
         id
         createdAt
+        date
         setID
         author
         content
@@ -97,6 +99,7 @@ export const deleteSet = `mutation DeleteSet(
       items {
         id
         createdAt
+        date
         setID
         author
         content
@@ -227,6 +230,7 @@ export const createComment = `mutation CreateComment(
   createComment(input: $input, condition: $condition) {
     id
     createdAt
+    date
     setID
     author
     content
@@ -253,6 +257,7 @@ export const updateComment = `mutation UpdateComment(
   updateComment(input: $input, condition: $condition) {
     id
     createdAt
+    date
     setID
     author
     content
@@ -279,6 +284,7 @@ export const deleteComment = `mutation DeleteComment(
   deleteComment(input: $input, condition: $condition) {
     id
     createdAt
+    date
     setID
     author
     content

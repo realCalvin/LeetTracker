@@ -24,6 +24,7 @@ export const getSet = `query GetSet($id: ID!) {
       items {
         id
         createdAt
+        date
         setID
         author
         content
@@ -120,6 +121,7 @@ export const getComment = `query GetComment($id: ID!) {
   getComment(id: $id) {
     id
     createdAt
+    date
     setID
     author
     content
@@ -148,6 +150,7 @@ export const listComments = `query ListComments(
     items {
       id
       createdAt
+      date
       setID
       author
       content

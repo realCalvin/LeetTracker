@@ -10,6 +10,7 @@ import {
   OverlayTrigger
 } from "react-bootstrap";
 import DisplaySetProblems from "../components/DisplaySetProblems";
+import AddComment from "../components/AddComment";
 
 class ViewSet extends Component {
   state = {
@@ -19,7 +20,6 @@ class ViewSet extends Component {
     if (this.props.location.state === undefined) {
       this.props.history.push({ pathname: "/sets" });
     } else {
-      console.log(this.props.location.state);
       // Retrieve list of problems for the set that is clicked on
       let setProblems = await API.graphql(
         graphqlOperation(queries.listProblems, {
@@ -35,7 +35,6 @@ class ViewSet extends Component {
       this.setState({
         problems: setProblems.data.listProblems.items
       });
-      console.log(this.state.problems);
     }
   }
   render() {
@@ -88,6 +87,7 @@ class ViewSet extends Component {
         ) : (
           <></>
         )}
+        <AddComment id={this.props.location.state.id} />
       </div>
     );
   }

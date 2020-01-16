@@ -74,7 +74,6 @@ class ViewSets extends Component {
       ) {
         otherCompany = true;
       }
-      console.log(set);
       return (
         <Card className="set-card" key={set.id} style={{ width: "15rem" }}>
           <Card.Img

@@ -149,7 +149,11 @@ class DisplayProblem extends Component {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              <a href={"https://leetcode.com/problems/" + this.props.url}>
+              <a
+                href={"https://leetcode.com/problems/" + this.props.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {this.props.title}
               </a>
             </Modal.Title>

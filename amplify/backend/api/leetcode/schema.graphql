@@ -21,10 +21,11 @@ type Problem @model {
 type Comment @model {
   id: ID!
   createdAt: String
+  date: String
   setID: ID!
   author: String!
   content: String!
-  set: Set @connection(name: "SetComments")
+  set: Set @connection(name: "SetComments", sortField: "createdAt")
 }
 type Time @model {
   id: ID!

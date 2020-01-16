@@ -156,7 +156,11 @@ class DisplaySetProblems extends Component {
               <Form.Check type="checkbox" name={problem.id} />
             </td>
             <td>
-              <a href={"https://leetcode.com/problems/" + problem.url}>
+              <a
+                href={"https://leetcode.com/problems/" + problem.url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 {problem.title}
               </a>
             </td>

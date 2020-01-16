@@ -11,6 +11,7 @@ import {
   Tooltip
 } from "react-bootstrap";
 import DisplaySetProblems from "../components/DisplaySetProblems";
+import AddComment from "../components/AddComment";
 
 class ViewSet extends Component {
   state = {
@@ -119,6 +120,9 @@ class ViewSet extends Component {
         </Jumbotron>
         {/* Display the set's problems */}
         <DisplaySetProblems problems={this.state.problems} viewOnly={true} />
+        <AddComment
+          id={this.props.match.params.user + "/" + this.props.match.params.id}
+        />
       </div>
     );
   }

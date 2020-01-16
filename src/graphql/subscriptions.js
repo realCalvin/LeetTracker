@@ -24,6 +24,7 @@ export const onCreateSet = `subscription OnCreateSet {
       items {
         id
         createdAt
+        date
         setID
         author
         content
@@ -56,6 +57,7 @@ export const onUpdateSet = `subscription OnUpdateSet {
       items {
         id
         createdAt
+        date
         setID
         author
         content
@@ -88,6 +90,7 @@ export const onDeleteSet = `subscription OnDeleteSet {
       items {
         id
         createdAt
+        date
         setID
         author
         content
@@ -206,6 +209,7 @@ export const onCreateComment = `subscription OnCreateComment {
   onCreateComment {
     id
     createdAt
+    date
     setID
     author
     content
@@ -229,6 +233,7 @@ export const onUpdateComment = `subscription OnUpdateComment {
   onUpdateComment {
     id
     createdAt
+    date
     setID
     author
     content
@@ -252,6 +257,7 @@ export const onDeleteComment = `subscription OnDeleteComment {
   onDeleteComment {
     id
     createdAt
+    date
     setID
     author
     content
