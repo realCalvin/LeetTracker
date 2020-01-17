@@ -7,7 +7,7 @@ import {
   Button,
   Jumbotron
 } from "react-bootstrap";
-import DisplayCard from "../components/DisplayCard";
+import DisplayCard from "../components/CRUD/DisplayCard";
 import data from "../data.json";
 import "../index.css";
 import $ from "jquery";

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import "../index.css";
 import {
   Row,
   Button,
@@ -11,10 +10,10 @@ import {
   Dropdown,
   Modal
 } from "react-bootstrap";
-import DisplayProblem from "../components/DisplayProblem";
+import DisplayProblem from "./DisplayProblem";
 import { API, graphqlOperation } from "aws-amplify";
-import * as queries from "../graphql/queries";
-import * as mutations from "../graphql/mutations";
+import * as queries from "../../graphql/queries";
+import * as mutations from "../../graphql/mutations";
 import $ from "jquery";
 
 class DisplaySetProblems extends Component {

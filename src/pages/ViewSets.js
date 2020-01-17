@@ -23,6 +23,7 @@ class ViewSets extends Component {
         limit: 1000
       })
     );
+    console.log(userSets);
     this.setState({
       userSets: userSets.data.listSets.items,
       loaded: true

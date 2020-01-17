@@ -36,6 +36,22 @@ code {
   height: 30px;
   margin: 0 10px;
 }
+
+/* DASHBOARD CSS */
+.Dashboard {
+  min-height: 100vh;
+  height: fit-content;
+  color: white;
+  background-color: rgb(54, 54, 54);
+}
+.dashboard-row {
+  justify-content: center;
+}
+.toast-body {
+  background-color: white;
+  color: black;
+}
+
 /* SIGN IN/UP CSS */
 #login-modal .auth-label {
   color: black;

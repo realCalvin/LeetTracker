@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
 import Landing from "./pages/Landing";
-import Profile from "./pages/Profile";
+import Dashboard from "./pages/Dashboard";
 import CreatePage from "./pages/CreatePage";
 import CreateSet from "./pages/CreateSet";
 import UpdateSet from "./pages/UpdateSet";
@@ -12,7 +12,7 @@ import ViewSet from "./pages/ViewSet";
 import ViewSetId from "./pages/VietSetId";
 import Error from "./pages/Error";
 import { Auth } from "aws-amplify";
-import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import AuthenticatedRoute from "./components/Route/AuthenticatedRoute";
 
 Amplify.configure(awsconfig);
 
@@ -53,6 +53,12 @@ function App() {
               appProps={{ isAuthenticated, userHasAuthenticated }}
             />
             <AuthenticatedRoute
+              path="/dashboard"
+              exact
+              component={Dashboard}
+              appProps={{ isAuthenticated, userHasAuthenticated }}
+            />
+            <AuthenticatedRoute
               path="/create/set"
               exact
               component={CreateSet}
@@ -74,12 +80,6 @@ function App() {
               path="/view/set"
               exact
               component={ViewSet}
-              appProps={{ isAuthenticated, userHasAuthenticated }}
-            />
-            <AuthenticatedRoute
-              path="/profile"
-              exact
-              component={Profile}
               appProps={{ isAuthenticated, userHasAuthenticated }}
             />
             <AuthenticatedRoute

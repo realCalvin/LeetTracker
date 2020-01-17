@@ -17,9 +17,9 @@ import {
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Auth } from "aws-amplify";
-import SignIn from "./SignIn";
-import SignUp from "./SignUp";
-import ConfirmCode from "./ConfirmCode";
+import SignIn from "../components/Auth/SignIn";
+import SignUp from "../components/Auth/SignUp";
+import ConfirmCode from "../components/Auth/ConfirmCode";
 
 class Landing extends Component {
   componentDidMount() {
@@ -132,8 +132,8 @@ class Landing extends Component {
           <Navbar.Collapse id="basic-navbar-nav">
             {this.state.user ? (
               <Nav className="mr-auto">
-                <Link className="navbar-link" to="/">
-                  Home
+                <Link className="navbar-link" to="/dashboard">
+                  Dashboard
                 </Link>
                 <Link className="navbar-link" to="/create">
                   Create

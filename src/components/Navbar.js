@@ -30,8 +30,8 @@ const NavbarC = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link className="navbar-link" to="/">
-              Home
+            <Link className="navbar-link" to="/dashboard">
+              Dashboard
             </Link>
             <Link className="navbar-link" to="/create">
               Create

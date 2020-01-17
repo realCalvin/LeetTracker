@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import "../index.css";
 import { API, graphqlOperation } from "aws-amplify";
-import * as mutations from "../graphql/mutations";
+import * as mutations from "../../graphql/mutations";
 import { Row, Button, Modal, Table, FormControl, Alert } from "react-bootstrap";
-import Timer from "../components/Timer";
+import Timer from "../Timer";
 import $ from "jquery";
 
 class DisplayProblem extends Component {

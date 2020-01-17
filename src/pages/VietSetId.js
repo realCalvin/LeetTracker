@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "../index.css";
 import { API, graphqlOperation, Auth } from "aws-amplify";
 import * as queries from "../graphql/queries";
 import * as mutations from "../graphql/mutations";
@@ -10,8 +9,8 @@ import {
   OverlayTrigger,
   Tooltip
 } from "react-bootstrap";
-import DisplaySetProblems from "../components/DisplaySetProblems";
-import AddComment from "../components/AddComment";
+import DisplaySetProblems from "../components/CRUD/DisplaySetProblems";
+import AddComment from "../components/CRUD/AddComment";
 
 class ViewSet extends Component {
   state = {

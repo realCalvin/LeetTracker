@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import "../index.css";
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../graphql/queries";
 import {
@@ -9,8 +8,8 @@ import {
   Popover,
   OverlayTrigger
 } from "react-bootstrap";
-import DisplaySetProblems from "../components/DisplaySetProblems";
-import AddComment from "../components/AddComment";
+import DisplaySetProblems from "../components/CRUD/DisplaySetProblems";
+import AddComment from "../components/CRUD/AddComment";
 
 class ViewSet extends Component {
   state = {
@@ -32,6 +31,7 @@ class ViewSet extends Component {
           }
         })
       );
+      console.log(setProblems);
       this.setState({
         problems: setProblems.data.listProblems.items
       });

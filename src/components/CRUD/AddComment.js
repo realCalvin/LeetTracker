@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import "../index.css";
 import { Auth } from "aws-amplify";
 import { API, graphqlOperation } from "aws-amplify";
-import * as queries from "../graphql/queries";
-import * as mutations from "../graphql/mutations";
+import * as queries from "../../graphql/queries";
+import * as mutations from "../../graphql/mutations";
 import { Row, Form, Button, Card, Badge } from "react-bootstrap";
 import $ from "jquery";
 
