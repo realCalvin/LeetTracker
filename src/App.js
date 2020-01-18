@@ -88,6 +88,12 @@ function App() {
               component={ViewSetId}
               appProps={{ isAuthenticated, userHasAuthenticated }}
             />
+            <AuthenticatedRoute
+              path="/view/:id"
+              exact
+              component={ViewSetId}
+              appProps={{ isAuthenticated, userHasAuthenticated }}
+            />
             <Route path="/*" component={Error} />
           </Switch>
         </BrowserRouter>

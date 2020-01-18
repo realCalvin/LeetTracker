@@ -21,6 +21,7 @@ code {
 }
 .card {
   box-shadow: -2px 2px 10px #a1a1a1;
+  color: black;
 }
 .card:hover {
   box-shadow: -5px 5px 20px #a1a1a1;
@@ -45,11 +46,22 @@ code {
   background-color: rgb(54, 54, 54);
 }
 .dashboard-row {
+  padding-top: 70px;
   justify-content: center;
 }
 .toast-body {
   background-color: white;
   color: black;
+}
+.dashboard-sets {
+  justify-content: center;
+  padding-top: 30px;
+}
+.dashboard-set-card {
+  box-shadow: none;
+  margin: 15px;
+  text-align: center;
+  border-radius: 10px;
 }
 
 /* SIGN IN/UP CSS */
@@ -77,6 +89,15 @@ code {
   text-decoration: none;
   font-size: 25px;
 }
+#forgot-password-modal .auth-label {
+  color: black;
+  font-size: 24px;
+}
+#forgot-password-modal .auth-label:hover {
+  text-decoration: none;
+  font-size: 25px;
+}
+
 .password-error {
   color: red;
 }
@@ -430,6 +451,16 @@ code {
 }
 #problem-time-input {
   width: 25%;
+}
+
+/* VIEWSET CSS*/
+.ViewSet {
+  padding-bottom: 80px;
+}
+
+/* VIEWSETID CSS*/
+.ViewSetID {
+  padding-bottom: 80px;
 }
 
 /* TIMER CSS */

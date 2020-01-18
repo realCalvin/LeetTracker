@@ -20,6 +20,8 @@ import { Auth } from "aws-amplify";
 import SignIn from "../components/Auth/SignIn";
 import SignUp from "../components/Auth/SignUp";
 import ConfirmCode from "../components/Auth/ConfirmCode";
+import ForgotPassword from "../components/Auth/ForgotPassword";
+import ResetPassword from "../components/Auth/ResetPassword";
 
 class Landing extends Component {
   componentDidMount() {
@@ -42,7 +44,9 @@ class Landing extends Component {
     user: null,
     showSignIn: false,
     showSignUp: false,
-    showConfirm: false
+    showConfirm: false,
+    showForgotPassword: false,
+    showResetPassword: false
   };
   render() {
     const setKey = k => {
@@ -61,7 +65,8 @@ class Landing extends Component {
     const handleSignInOpen = () => {
       this.setState({
         showSignIn: true,
-        showSignUp: false
+        showSignUp: false,
+        showForgotPassword: false
       });
     };
     const handleSignInClose = () => {
@@ -97,6 +102,33 @@ class Landing extends Component {
       });
     };
 
+    // Open and close forgot password model
+    const handleForgotPasswordClose = () => {
+      this.setState({
+        showForgotPassword: false
+      });
+    };
+    const handleForgotPasswordOpen = () => {
+      this.setState({
+        showForgotPassword: true,
+        showSignIn: false,
+        showResetPassword: false
+      });
+    };
+
+    // Open and close reset password model
+    const handleResetPasswordClose = () => {
+      this.setState({
+        showResetPassword: false
+      });
+    };
+    const handleResetPasswordOpen = () => {
+      this.setState({
+        showResetPassword: true,
+        showForgotPassword: false
+      });
+    };
+
     return (
       <div className="Landing">
         {/* Sign in and sign up modals below */}
@@ -104,6 +136,7 @@ class Landing extends Component {
           showSignIn={this.state.showSignIn}
           handleSignInClose={handleSignInClose}
           handleSignUpOpen={handleSignUpOpen}
+          handleForgotPasswordOpen={handleForgotPasswordOpen}
         />
         <SignUp
           showSignUp={this.state.showSignUp}
@@ -116,6 +149,19 @@ class Landing extends Component {
           handleSignUpOpen={handleSignUpOpen}
           handleConfirmClose={handleConfirmClose}
           handleConfirmOpen={handleConfirmOpen}
+        />
+        <ForgotPassword
+          showForgotPassword={this.state.showForgotPassword}
+          handleSignInOpen={handleSignInOpen}
+          handleForgotPasswordClose={handleForgotPasswordClose}
+          handleForgotPasswordOpen={handleForgotPasswordOpen}
+          handleResetPasswordOpen={handleResetPasswordOpen}
+        />
+        <ResetPassword
+          showResetPassword={this.state.showResetPassword}
+          handleForgotPasswordOpen={handleForgotPasswordOpen}
+          handleResetPasswordOpen={handleResetPasswordOpen}
+          handleResetPasswordClose={handleResetPasswordClose}
         />
         <Navbar
           id="landing-navbar"

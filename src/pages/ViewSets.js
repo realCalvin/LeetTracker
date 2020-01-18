@@ -95,6 +95,7 @@ class ViewSets extends Component {
             <Button
               className="view-sets-btn"
               variant="dark"
+              size="sm"
               onClick={() => {
                 ViewSets(set.id, set.title, set.company, set.description);
               }}

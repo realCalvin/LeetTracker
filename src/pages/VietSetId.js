@@ -25,11 +25,21 @@ class ViewSet extends Component {
     let data = await Auth.currentSession();
     var token = await data.getIdToken();
     // Retrieve title and description of the set
-    let infoSet = await API.graphql(
-      graphqlOperation(queries.getSet, {
-        id: this.props.match.params.user + "/" + this.props.match.params.id
-      })
-    );
+    let infoSet;
+    if (this.props.match.params.user !== "view") {
+      infoSet = await API.graphql(
+        graphqlOperation(queries.getSet, {
+          id: this.props.match.params.user + "/" + this.props.match.params.id
+        })
+      );
+    } else {
+      infoSet = await API.graphql(
+        graphqlOperation(queries.getSet, {
+          id: this.props.match.params.id
+        })
+      );
+    }
+
     if (infoSet.data.getSet === null) {
       this.props.history.push({ pathname: "/sets" });
     } else {
@@ -40,8 +50,7 @@ class ViewSet extends Component {
           limit: 1000,
           filter: {
             setID: {
-              eq:
-                this.props.match.params.user + "/" + this.props.match.params.id
+              eq: this.props.match.params.id
             }
           }
         })
@@ -54,7 +63,6 @@ class ViewSet extends Component {
         problems: setProblems.data.listProblems.items,
         currentUser: token.payload["cognito:username"]
       });
-      console.log(this.state);
     }
   }
 

@@ -3,48 +3,30 @@ import { Button, Form, Modal } from "react-bootstrap";
 import { Auth } from "aws-amplify";
 import $ from "jquery";
 
-class SignIn extends Component {
-  // Function to check if a user is authenticated
-  async isAuthenticated() {
-    await Auth.currentAuthenticatedUser()
-      .then(user => (window.location = "/"))
-      .catch(err => console.log(err));
-  }
+class ResetPassword extends Component {
   render() {
     // Function listens to login form and logs in if user is valid
-    let handleLogin = e => {
+    let handleReset = e => {
       e.preventDefault();
-      let data = $("#login-form").serializeArray();
-      let username = data[0].value;
-      let password = data[1].value;
-      Auth.signIn(username, password)
-        .then(res => this.isAuthenticated())
-        .catch(err => alert(err.message));
+      let data = $("#confirm-form").serializeArray();
     };
 
     return (
       <Modal
-        show={this.props.showSignIn}
-        onHide={this.props.handleSignInClose}
-        id="login-modal"
+        show={this.props.showResetPassword}
+        onHide={this.props.handleResetPasswordClose}
+        id="reset-password-modal"
       >
-        <Form id="login-form" onSubmit={handleLogin}>
+        <Form id="confirm-form" onSubmit={handleReset}>
           <Modal.Header closeButton>
             <Modal.Title>
               <Button variant="link" className="underline auth-label">
-                Login
-              </Button>
-              <Button
-                variant="link"
-                onClick={this.props.handleSignUpOpen}
-                className="auth-label"
-              >
-                Register
+                Reset Password
               </Button>
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Form.Group controlId="formBasicUsername1">
+            <Form.Group controlId="formBasicUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
@@ -53,12 +35,30 @@ class SignIn extends Component {
                 required
               />
             </Form.Group>
+            <Form.Group controlId="formBasicCode">
+              <Form.Label>Confirmation Code</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Enter Code"
+                name="code"
+                required
+              />
+            </Form.Group>
             <Form.Group controlId="formBasicPassword1">
               <Form.Label>Password</Form.Label>
               <Form.Control
-                type="password"
-                placeholder="Enter Password"
-                name="password"
+                type="text"
+                placeholder="Enter New Password"
+                name="password1"
+                required
+              />
+            </Form.Group>
+            <Form.Group controlId="formBasicPassword2">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Confirm New Password"
+                name="password2"
                 required
               />
             </Form.Group>
@@ -68,10 +68,10 @@ class SignIn extends Component {
               variant="secondary"
               onClick={this.props.handleForgotPasswordOpen}
             >
-              Forgot Password
+              Back
             </Button>
             <Button variant="primary" type="submit">
-              Login
+              Reset
             </Button>
           </Modal.Footer>
         </Form>
@@ -79,4 +79,4 @@ class SignIn extends Component {
     );
   }
 }
-export default SignIn;
+export default ResetPassword;
