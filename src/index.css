@@ -64,7 +64,7 @@ code {
   border-radius: 10px;
 }
 
-/* SIGN IN/UP CSS */
+/* AUTH MODAL CSS */
 #login-modal .auth-label {
   color: black;
   font-size: 24px;
@@ -96,6 +96,30 @@ code {
 #forgot-password-modal .auth-label:hover {
   text-decoration: none;
   font-size: 25px;
+}
+#reset-password-modal .auth-label {
+  color: black;
+  font-size: 24px;
+}
+#reset-password-modal .auth-label:hover {
+  text-decoration: none;
+  font-size: 25px;
+}
+#hidden-forgot-password {
+  display: none;
+  color: rgb(22, 231, 22);
+}
+#hidden-forgot-password-error {
+  display: none;
+  color: red;
+}
+#hidden-reset-password {
+  display: none;
+  color: rgb(22, 231, 22);
+}
+#hidden-reset-password-error {
+  display: none;
+  color: red;
 }
 
 .password-error {

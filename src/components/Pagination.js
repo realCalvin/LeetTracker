@@ -1,13 +1,13 @@
 import React from "react";
 
-const Pagination = ({ problemsPerPage, totalProblems, paginate }) => {
+const Paginations = ({ problemsPerPage, totalProblems, paginate }) => {
   const problemNumbers = [];
 
   // For loop to calculate how many numbers should be displayed on pagiantion
   for (let i = 1; i <= Math.ceil(totalProblems / problemsPerPage); i++) {
     problemNumbers.push(i);
   }
-
+  console.log(problemNumbers);
   return (
     <div>
       <nav>
@@ -25,4 +25,4 @@ const Pagination = ({ problemsPerPage, totalProblems, paginate }) => {
   );
 };
 
-export default Pagination;
+export default Paginations;

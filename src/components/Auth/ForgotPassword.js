@@ -5,19 +5,30 @@ import $ from "jquery";
 
 class ForgotPassword extends Component {
   render() {
-    // Function listens to login form and logs in if user is valid
-    let handleReset = e => {
+    // Function listens to reset form and sends user a confirmation code needed to reset password
+    let handleSendReset = e => {
       e.preventDefault();
-      let data = $("#confirm-form").serializeArray();
+      let data = $("#forgot-password-form").serializeArray();
+      let username = data[0].value;
+      Auth.forgotPassword(username)
+        .then(data => {
+          $("#hidden-forgot-password").css("display", "block");
+          $("#hidden-forgot-password-error").css("display", "none");
+        })
+        .catch(err => {
+          $("#hidden-forgot-password").css("display", "none");
+          $("#hidden-forgot-password-error").css("display", "block");
+        });
     };
 
     return (
+      /* Model used to send a confirmation code to reset password */
       <Modal
         show={this.props.showForgotPassword}
         onHide={this.props.handleForgotPasswordClose}
         id="forgot-password-modal"
       >
-        <Form id="confirm-form" onSubmit={handleReset}>
+        <Form id="forgot-password-form" onSubmit={handleSendReset}>
           <Modal.Header closeButton>
             <Modal.Title>
               <Button variant="link" className="underline auth-label">
@@ -35,6 +46,7 @@ class ForgotPassword extends Component {
                 required
               />
             </Form.Group>
+
             <small>
               After receiving your code...{" "}
               <Button
@@ -45,13 +57,19 @@ class ForgotPassword extends Component {
                 Click here
               </Button>
             </small>
+            <small id="hidden-forgot-password">
+              Confirmation code has been sent to your email.
+            </small>
+            <small id="hidden-forgot-password-error">
+              Error. Enter a valid username.
+            </small>
           </Modal.Body>
           <Modal.Footer>
             <Button variant="secondary" onClick={this.props.handleSignInOpen}>
               Back
             </Button>
             <Button variant="primary" type="submit">
-              Send
+              Submit
             </Button>
           </Modal.Footer>
         </Form>
