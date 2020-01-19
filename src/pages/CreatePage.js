@@ -38,6 +38,14 @@ class CreatePage extends Component {
     let closeOther = () => {
       $("#other-company").hide();
     };
+    let checkInput = () => {
+      let selectedCompany = $("#company").val();
+      if (selectedCompany === "Other") {
+        displayOther();
+      } else {
+        closeOther();
+      }
+    };
     return (
       <div>
         <Container className="spacing">
@@ -66,14 +74,20 @@ class CreatePage extends Component {
             </Form.Group>
             <Form.Group>
               <Form.Label>Company</Form.Label>
-              <Form.Control as="select" name="company" multiple required>
-                <option onClick={closeOther}>Facebook</option>
-                <option onClick={closeOther}>Amazon</option>
-                <option onClick={closeOther}>Google</option>
-                <option onClick={closeOther}>Microsoft</option>
-                <option onClick={closeOther}>Apple</option>
-                <option onClick={closeOther}>Twitter</option>
-                <option onClick={displayOther}>Other</option>
+              <Form.Control
+                id="company"
+                as="select"
+                name="company"
+                required
+                onChange={checkInput}
+              >
+                <option>Facebook</option>
+                <option>Amazon</option>
+                <option>Google</option>
+                <option>Microsoft</option>
+                <option>Apple</option>
+                <option>Twitter</option>
+                <option>Other</option>
               </Form.Control>
             </Form.Group>
             <Form.Group id="other-company">

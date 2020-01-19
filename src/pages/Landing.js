@@ -296,15 +296,30 @@ class Landing extends Component {
               <h1>Contact Us</h1>
             </Row>
             <Row id="contact-us" className="justify-content-md-center">
-              <Form id="contact-form">
-                <Form.Group name="name">
-                  <Form.Control type="text" placeholder="Name" required />
-                </Form.Group>
-                <Form.Group name="email">
-                  <Form.Control type="text" placeholder="Email" required />
-                </Form.Group>
-                <Form.Group name="message">
+              <Form
+                id="contact-form"
+                action="https://formspree.io/lycalvin99@gmail.com"
+                method="POST"
+              >
+                <Form.Group>
                   <Form.Control
+                    name="name"
+                    type="text"
+                    placeholder="Name"
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Control
+                    name="email"
+                    type="text"
+                    placeholder="Email"
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Control
+                    name="message"
                     id="form-textarea"
                     as="textarea"
                     rows="3"
