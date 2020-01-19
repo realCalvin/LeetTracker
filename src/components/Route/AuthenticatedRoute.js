@@ -1,6 +1,5 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
-import Navbar from "../Navbar";
 
 export default function AuthenticatedRoute({
   component: Component,
@@ -8,18 +7,15 @@ export default function AuthenticatedRoute({
   ...rest
 }) {
   return (
-    <div>
-      <Navbar />
-      <Route
-        {...rest}
-        render={props =>
-          appProps.isAuthenticated ? (
-            <Component {...props} {...appProps} />
-          ) : (
-            <Redirect to={`/?redirect=signin`} />
-          )
-        }
-      />
-    </div>
+    <Route
+      {...rest}
+      render={props =>
+        appProps.isAuthenticated ? (
+          <Component {...props} {...appProps} />
+        ) : (
+          <Redirect to={`/?redirect=signin`} />
+        )
+      }
+    />
   );
 }

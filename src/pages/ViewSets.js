@@ -3,6 +3,7 @@ import "../index.css";
 import { API, graphqlOperation, Auth } from "aws-amplify";
 import * as queries from "../graphql/queries";
 import { Card, Row, Button, Spinner } from "react-bootstrap";
+import Navbar from "../components/Navbar";
 
 class ViewSets extends Component {
   state = {
@@ -107,22 +108,25 @@ class ViewSets extends Component {
       );
     });
     return (
-      <div className="Profile spacing">
-        <Row className="card-row">
-          <h1 className="header-spacing">Sets</h1>
-        </Row>
-        <Row className="card-row">
-          {this.state.loaded ? (
-            sets.length ? (
-              sets
+      <>
+        <Navbar />
+        <div className="Profile spacing">
+          <Row className="card-row">
+            <h1 className="header-spacing">Sets</h1>
+          </Row>
+          <Row className="card-row">
+            {this.state.loaded ? (
+              sets.length ? (
+                sets
+              ) : (
+                <h4>Empty...</h4>
+              )
             ) : (
-              <h4>Empty...</h4>
-            )
-          ) : (
-            <Spinner animation="border" variant="dark" />
-          )}
-        </Row>
-      </div>
+              <Spinner animation="border" variant="dark" />
+            )}
+          </Row>
+        </div>
+      </>
     );
   }
 }

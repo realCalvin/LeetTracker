@@ -10,10 +10,12 @@ import {
 } from "react-bootstrap";
 import DisplaySetProblems from "../components/CRUD/DisplaySetProblems";
 import AddComment from "../components/CRUD/AddComment";
+import Navbar from "../components/Navbar";
 
 class ViewSet extends Component {
   state = {
-    problems: []
+    problems: [],
+    baseUrl: ""
   };
   async componentDidMount() {
     if (this.props.location.state === undefined) {
@@ -31,9 +33,10 @@ class ViewSet extends Component {
           }
         })
       );
-      console.log(setProblems);
+      var baseUrl = "http://" + window.location.host + "/";
       this.setState({
-        problems: setProblems.data.listProblems.items
+        problems: setProblems.data.listProblems.items,
+        baseUrl: baseUrl
       });
     }
   }
@@ -44,51 +47,54 @@ class ViewSet extends Component {
         <Popover id="popover-basic">
           <Popover.Title as="h3">Send Link To Share!</Popover.Title>
           <Popover.Content>
-            <a href={"http://localhost:3000/" + this.props.location.state.id}>
-              {"http://localhost:3000/" + this.props.location.state.id}
+            <a href={this.state.baseUrl + this.props.location.state.id}>
+              {this.state.baseUrl + this.props.location.state.id}
             </a>
           </Popover.Content>
         </Popover>
       );
     }
     return (
-      <div className="ViewSet spacing">
-        {this.props.location.state ? (
-          <>
-            <Jumbotron>
-              <Row className="card-row">
-                <h1>{this.props.location.state.title}</h1>
-              </Row>
-              <Row className="card-row">
-                <p>{this.props.location.state.description}</p>
-              </Row>
-              <Row className="card-row">
-                <OverlayTrigger
-                  trigger="click"
-                  placement="right"
-                  overlay={popover}
-                >
-                  <Button variant="dark" size="sm">
-                    <i className="fa fa-share"></i> Share
-                  </Button>
-                </OverlayTrigger>
-              </Row>
-            </Jumbotron>
-            {/* Display the set's problems */}
-            <DisplaySetProblems
-              problems={this.state.problems}
-              viewOnly={false}
-              id={this.props.location.state.id}
-              title={this.props.location.state.title}
-              company={this.props.location.state.company}
-              description={this.props.location.state.description}
-            />
-          </>
-        ) : (
-          <></>
-        )}
-        <AddComment id={this.props.location.state.id} />
-      </div>
+      <>
+        <Navbar />
+        <div className="ViewSet spacing">
+          {this.props.location.state ? (
+            <>
+              <Jumbotron>
+                <Row className="card-row">
+                  <h1>{this.props.location.state.title}</h1>
+                </Row>
+                <Row className="card-row">
+                  <p>{this.props.location.state.description}</p>
+                </Row>
+                <Row className="card-row">
+                  <OverlayTrigger
+                    trigger="click"
+                    placement="right"
+                    overlay={popover}
+                  >
+                    <Button variant="dark" size="sm">
+                      <i className="fa fa-share"></i> Share
+                    </Button>
+                  </OverlayTrigger>
+                </Row>
+              </Jumbotron>
+              {/* Display the set's problems */}
+              <DisplaySetProblems
+                problems={this.state.problems}
+                viewOnly={false}
+                id={this.props.location.state.id}
+                title={this.props.location.state.title}
+                company={this.props.location.state.company}
+                description={this.props.location.state.description}
+              />
+            </>
+          ) : (
+            <></>
+          )}
+          <AddComment id={this.props.location.state.id} />
+        </div>
+      </>
     );
   }
 }

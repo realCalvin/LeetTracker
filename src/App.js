@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import Amplify from "aws-amplify";
 import awsconfig from "./aws-exports";
 import Landing from "./pages/Landing";
@@ -15,6 +16,7 @@ import { Auth } from "aws-amplify";
 import AuthenticatedRoute from "./components/Route/AuthenticatedRoute";
 
 Amplify.configure(awsconfig);
+const browserHistory = createBrowserHistory();
 
 function App() {
   const [isAuthenticating, setIsAuthenticating] = useState(true);
@@ -41,7 +43,7 @@ function App() {
   return (
     !isAuthenticating && (
       <div className="App">
-        <BrowserRouter>
+        <Router history={browserHistory}>
           <Switch>
             {/* User does not need to be logged in */}
             <Route exact path="/" component={Landing}></Route>
@@ -96,7 +98,7 @@ function App() {
             />
             <Route path="/*" component={Error} />
           </Switch>
-        </BrowserRouter>
+        </Router>
       </div>
     )
   );

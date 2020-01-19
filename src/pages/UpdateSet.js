@@ -12,6 +12,7 @@ import data from "../data.json";
 import $ from "jquery";
 import { API, graphqlOperation } from "aws-amplify";
 import * as mutations from "../graphql/mutations";
+import Navbar from "../components/Navbar";
 
 class UpdateSet extends Component {
   state = {
@@ -173,84 +174,88 @@ class UpdateSet extends Component {
     };
 
     return (
-      <div className="CreateSet spacing">
-        {/* Jumbotron displays the current user's set */}
-        <div id="checkmark-div">
-          <i id="checkmark" className="fa fa-check"></i>
-        </div>
-        <div id="xmark-div">
-          <i id="xmark" className="fa fa-times"></i>
-        </div>
-        <Jumbotron>
-          {this.state.set.length ? (
-            ""
-          ) : (
-            <div>
-              <Row className="card-row">
-                <h3>Empty...</h3>
-              </Row>
-              <Row className="card-row">
-                <p>Add problems by clicking on them!</p>
-              </Row>{" "}
-            </div>
-          )}
-          <Row className="card-row">
+      <>
+        {" "}
+        <Navbar />
+        <div className="CreateSet spacing">
+          {/* Jumbotron displays the current user's set */}
+          <div id="checkmark-div">
+            <i id="checkmark" className="fa fa-check"></i>
+          </div>
+          <div id="xmark-div">
+            <i id="xmark" className="fa fa-times"></i>
+          </div>
+          <Jumbotron>
             {this.state.set.length ? (
-              <h3>{this.props.location.state.title}</h3>
-            ) : (
               ""
-            )}
-          </Row>
-          <Row className="card-row">
-            {/* Display user's set of problems if length > 0 */}
-            {this.state.set.length
-              ? this.state.set.map(problem => (
-                  // DisplayCard is the card used to display problems
-                  <DisplayCard
-                    key={problem.id}
-                    problem={problem}
-                    actionOnCard={removeCard}
-                    checkLevel={checkLevel}
-                    toolMessage="Click to remove! (˘▾˘)"
-                  />
-                ))
-              : ""}
-          </Row>
-          <Row className="card-row">
-            {this.state.set.length ? (
-              <Button variant="dark" onClick={addProblem}>
-                Add
-              </Button>
             ) : (
-              ""
+              <div>
+                <Row className="card-row">
+                  <h3>Empty...</h3>
+                </Row>
+                <Row className="card-row">
+                  <p>Add problems by clicking on them!</p>
+                </Row>{" "}
+              </div>
             )}
+            <Row className="card-row">
+              {this.state.set.length ? (
+                <h3>{this.props.location.state.title}</h3>
+              ) : (
+                ""
+              )}
+            </Row>
+            <Row className="card-row">
+              {/* Display user's set of problems if length > 0 */}
+              {this.state.set.length
+                ? this.state.set.map(problem => (
+                    // DisplayCard is the card used to display problems
+                    <DisplayCard
+                      key={problem.id}
+                      problem={problem}
+                      actionOnCard={removeCard}
+                      checkLevel={checkLevel}
+                      toolMessage="Click to remove! (˘▾˘)"
+                    />
+                  ))
+                : ""}
+            </Row>
+            <Row className="card-row">
+              {this.state.set.length ? (
+                <Button variant="dark" onClick={addProblem}>
+                  Add
+                </Button>
+              ) : (
+                ""
+              )}
+            </Row>
+          </Jumbotron>
+          <Row className="card-row">
+            <InputGroup size="sm" className="mb-3">
+              <InputGroup.Prepend>
+                <InputGroup.Text id="inputGroup-sizing-sm">
+                  Search Problem
+                </InputGroup.Text>
+              </InputGroup.Prepend>
+              <FormControl onChange={updateSearch} />
+              <InputGroup.Append>
+                <Button variant="secondary" onClick={updateSearch}>
+                  <i className="fa fa-search"></i>
+                </Button>
+              </InputGroup.Append>
+            </InputGroup>
           </Row>
-        </Jumbotron>
-        <Row className="card-row">
-          <InputGroup size="sm" className="mb-3">
-            <InputGroup.Prepend>
-              <InputGroup.Text id="inputGroup-sizing-sm">
-                Search Problem
-              </InputGroup.Text>
-            </InputGroup.Prepend>
-            <FormControl onChange={updateSearch} />
-            <InputGroup.Append>
-              <Button variant="secondary" onClick={updateSearch}>
-                <i className="fa fa-search"></i>
-              </Button>
-            </InputGroup.Append>
-          </InputGroup>
-        </Row>
-        <Row className="card-row">{filteredProblems}</Row>
-        <Row className="card-row">
-          <Pagination
-            problemsPerPage={this.state.problemsPerPage}
-            totalProblems={this.state.problems.length}
-            paginate={paginate}
-          />
-        </Row>
-        {/* Pagination is the numbers displayed to navigate through problems */}
-      </div>
+          <Row className="card-row">{filteredProblems}</Row>
+          <Row className="card-row">
+            <Pagination
+              problemsPerPage={this.state.problemsPerPage}
+              totalProblems={this.state.problems.length}
+              paginate={paginate}
+            />
+          </Row>
+          {/* Pagination is the numbers displayed to navigate through problems */}
+        </div>
+      </>
     );
   }
 }

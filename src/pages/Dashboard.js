@@ -1,14 +1,16 @@
 import React, { Component } from "react";
 import { API, graphqlOperation } from "aws-amplify";
 import * as queries from "../graphql/queries";
-import { Row, Toast, Image, Card, Button } from "react-bootstrap";
+import { Row, Toast, Image, Card, Button, Spinner } from "react-bootstrap";
 import icon from "../components/img/icon.png";
 import $ from "jquery";
+import Navbar from "../components/Navbar";
 
 class Dashboard extends Component {
   state = {
     showToast: true,
-    sets: []
+    sets: [],
+    loaded: false
   };
 
   async componentDidMount() {
@@ -24,7 +26,8 @@ class Dashboard extends Component {
       })
     );
     this.setState({
-      sets: adminSets.data.listSets.items
+      sets: adminSets.data.listSets.items,
+      loaded: true
     });
     setTimeout(() => {
       $(".dashboard-row").animate(
@@ -83,25 +86,38 @@ class Dashboard extends Component {
     });
 
     return (
-      <div className="Dashboard spacing">
-        <Row className="dashboard-row">
-          <Toast show={this.state.showToast} onClose={toggleToast}>
-            <Toast.Header>
-              <Image
-                src={icon}
-                alt="Icon"
-                className="rounded mr-2"
-                fluid
-                id="icon"
-              />
-              <strong className="mr-auto">Get Started</strong>
-              <small>1 min ago</small>
-            </Toast.Header>
-            <Toast.Body>Feel free to use the existing sets below!</Toast.Body>
-          </Toast>
-        </Row>
-        <Row className="dashboard-sets">{sets}</Row>
-      </div>
+      <>
+        <Navbar />
+        <div className="Dashboard spacing">
+          <Row className="dashboard-row">
+            <Toast show={this.state.showToast} onClose={toggleToast}>
+              <Toast.Header>
+                <Image
+                  src={icon}
+                  alt="Icon"
+                  className="rounded mr-2"
+                  fluid
+                  id="icon"
+                />
+                <strong className="mr-auto">Get Started</strong>
+                <small>1 min ago</small>
+              </Toast.Header>
+              <Toast.Body>Feel free to use the existing sets below!</Toast.Body>
+            </Toast>
+          </Row>
+          <Row className="dashboard-sets">
+            {this.state.loaded ? (
+              sets.length ? (
+                sets
+              ) : (
+                <h4>Empty...</h4>
+              )
+            ) : (
+              <Spinner animation="border" variant="light" />
+            )}
+          </Row>
+        </div>
+      </>
     );
   }
 }

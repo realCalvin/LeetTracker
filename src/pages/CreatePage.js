@@ -3,6 +3,7 @@ import { Form, Button, Container } from "react-bootstrap";
 import $ from "jquery";
 import { Auth } from "aws-amplify";
 import { Row } from "react-bootstrap";
+import Navbar from "../components/Navbar";
 
 class CreatePage extends Component {
   componentDidMount() {
@@ -48,6 +49,7 @@ class CreatePage extends Component {
     };
     return (
       <div>
+        <Navbar />
         <Container className="spacing">
           <Row className="card-row">
             <h1 className="header-spacing">Create New Set</h1>

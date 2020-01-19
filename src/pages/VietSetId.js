@@ -11,6 +11,7 @@ import {
 } from "react-bootstrap";
 import DisplaySetProblems from "../components/CRUD/DisplaySetProblems";
 import AddComment from "../components/CRUD/AddComment";
+import Navbar from "../components/Navbar";
 
 class ViewSet extends Component {
   state = {
@@ -50,7 +51,7 @@ class ViewSet extends Component {
           limit: 1000,
           filter: {
             setID: {
-              eq: this.props.match.params.id
+              eq: infoSet.data.getSet.id
             }
           }
         })
@@ -102,35 +103,38 @@ class ViewSet extends Component {
       }, 600);
     };
     return (
-      <div className="ViewSetID spacing">
-        <Jumbotron>
-          <Row className="card-row">
-            <h1>{this.state.title}</h1>
-          </Row>
-          <Row className="card-row">
-            <p>{this.state.description}</p>
-          </Row>
-          {this.state.author !== this.state.currentUser ? (
+      <>
+        <Navbar />
+        <div className="ViewSetID spacing">
+          <Jumbotron>
             <Row className="card-row">
-              <OverlayTrigger
-                placement={"right"}
-                overlay={<Tooltip>Add to your list of sets</Tooltip>}
-              >
-                <Button variant="dark" size="sm" onClick={cloneSet}>
-                  <i className="fa fa-clone"></i> Clone
-                </Button>
-              </OverlayTrigger>
+              <h1>{this.state.title}</h1>
             </Row>
-          ) : (
-            ""
-          )}
-        </Jumbotron>
-        {/* Display the set's problems */}
-        <DisplaySetProblems problems={this.state.problems} viewOnly={true} />
-        <AddComment
-          id={this.props.match.params.user + "/" + this.props.match.params.id}
-        />
-      </div>
+            <Row className="card-row">
+              <p>{this.state.description}</p>
+            </Row>
+            {this.state.author !== this.state.currentUser ? (
+              <Row className="card-row">
+                <OverlayTrigger
+                  placement={"right"}
+                  overlay={<Tooltip>Add to your list of sets</Tooltip>}
+                >
+                  <Button variant="dark" size="sm" onClick={cloneSet}>
+                    <i className="fa fa-clone"></i> Clone
+                  </Button>
+                </OverlayTrigger>
+              </Row>
+            ) : (
+              ""
+            )}
+          </Jumbotron>
+          {/* Display the set's problems */}
+          <DisplaySetProblems problems={this.state.problems} viewOnly={true} />
+          <AddComment
+            id={this.props.match.params.user + "/" + this.props.match.params.id}
+          />
+        </div>
+      </>
     );
   }
 }
