@@ -1,6 +1,5 @@
 import React from "react";
 import { Auth } from "aws-amplify";
-import "bootstrap/dist/css/bootstrap.css";
 import { Navbar, Nav, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import icon from "../components/img/icon.png";
