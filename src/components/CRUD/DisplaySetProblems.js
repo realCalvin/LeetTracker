@@ -151,9 +151,14 @@ class DisplaySetProblems extends Component {
         }
         return (
           <tr key={problem.id}>
-            <td className="table-action-check">
-              <Form.Check type="checkbox" name={problem.id} />
-            </td>
+            {this.props.viewOnly ? (
+              <></>
+            ) : (
+              <td className="table-action-check">
+                <Form.Check type="checkbox" name={problem.id} />
+              </td>
+            )}
+
             <td>
               <a
                 href={"https://leetcode.com/problems/" + problem.url}
@@ -250,23 +255,27 @@ class DisplaySetProblems extends Component {
             <Table striped bordered hover id="set-problem-table">
               <thead>
                 <tr>
-                  <th id="table-action-header">
-                    <Dropdown>
-                      <Dropdown.Toggle
-                        variant="outline-dark"
-                        id="dropdown-basic"
-                        size="sm"
-                      >
-                        Action
-                      </Dropdown.Toggle>
-                      <Dropdown.Menu>
-                        <Dropdown.Item onClick={handleAdd}>Add</Dropdown.Item>
-                        <Dropdown.Item onClick={openDeleteModal}>
-                          Delete
-                        </Dropdown.Item>
-                      </Dropdown.Menu>
-                    </Dropdown>
-                  </th>
+                  {this.props.viewOnly ? (
+                    <></>
+                  ) : (
+                    <th id="table-action-header">
+                      <Dropdown>
+                        <Dropdown.Toggle
+                          variant="outline-dark"
+                          id="dropdown-basic"
+                          size="sm"
+                        >
+                          Action
+                        </Dropdown.Toggle>
+                        <Dropdown.Menu>
+                          <Dropdown.Item onClick={handleAdd}>Add</Dropdown.Item>
+                          <Dropdown.Item onClick={openDeleteModal}>
+                            Delete
+                          </Dropdown.Item>
+                        </Dropdown.Menu>
+                      </Dropdown>
+                    </th>
+                  )}
                   <th>Problems</th>
                   <th>Difficulty</th>
                   {this.props.viewOnly ? (
