@@ -1,71 +1,94 @@
 # LeetTracker
-LeetCode Tracker Application (built with React.js &amp; AWS)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Table of Contents
 
-## Available Scripts
+1. [Overview](#overview)
+2. [Demo](#demo)
+3. [Getting Started](#getting-started)
+   - [Setting Up AWS Backend](#setting-up-aws-backend)
+   - [Installing](#installing)
+4. [Built With](#built-with)
 
-In the project directory, you can run:
+## Overview:
 
-### `npm start`
+Creating your set of LeetCode problems on an excel sheet is time consuming and hard to share with others. LeetTracker is a web application that allows users to easily create their own set or view/clone existing sets that other users have created. Users can track their progress on sets of problems and also share their LeetCode experience with others—via a sharable url.
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The objective of LeetTracker is to easily share set of problems (targeted towards a company), track the user's progress, and easily add/delete/update a set of LeetCode problems.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+Live Website: https://master.d3i5xbbmcj6qbb.amplifyapp.com/
 
-### `npm test`
+## Demo:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![DemoLanding](images/landing.png)
 
-### `npm run build`
+![DemoDashboard](images/dashboard.png)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![DemoCreate](images/create.png)
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+![DemoSet](images/set.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+To setup a localhost web server for developmental purposes.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Git clone this repository and follow the steps below.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Setting Up AWS Backend
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+The backend resources were generating with AWS Amplify. To set up the backend, multiple AWS files are required that must be configured by the user themselves.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+A more detailed guide to set up the backend can be found in the Amplify documentation: [here](https://aws-amplify.github.io/docs/cli-toolchain/quickstart?sdk=js)
 
-## Learn More
+**Below are the main commands used to set up the backend—if unsure, reference the documentation above.**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```javascript
+npm install -g @aws-amplify/cli
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+**Configure the Amplify Command Line Interface (CLI) with your account information.**
 
-### Code Splitting
+```javascript
+amplify configure
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+**The init command must be executed at the root directory of the project. This initilizes the project for the Amplify CLI to work with.**
 
-### Analyzing the Bundle Size
+```javascript
+amplify init
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+**Adds the backend to the project by setting up DynamoDB to perform CRUD operations.**
 
-### Making a Progressive Web App
+```javascript
+amplify add api
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+**Adds authentication to the project by setting up Cognito.**
 
-### Advanced Configuration
+```javascript
+amplify add auth
+```
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+### Installing
 
-### Deployment
+Open up the cloned repo and install the required packages in terminal.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+```javascript
+npm install
+```
 
-### `npm run build` fails to minify
+To run the application.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+```javascript
+npm start
+```
+
+## Built With
+
+- [React.js](https://reactjs.org/): A JavaScript library for building user interfaces. ReactJS is used for handling the view layer and allows us to create reusable UI components.
+- [AWS Amplify](https://aws.amazon.com/amplify/): A development platform for building secure, scalable mobile and web applications.
+  - [DynamoDB](https://aws.amazon.com/dynamodb/): A NoSQL database service that supports key-value and document data structures
+  - [Cognito](https://aws.amazon.com/cognito/): Allows user sign-up, sign-in, and access control to your web and mobile apps quickly and easily.
+- [GraphQL](https://graphql.org/) : An open-source data query and manipulation language for APIs, and a runtime for fulfilling queries with existing data.
+- [JQuery](https://jquery.com/): A JavaScript library designed to simplify HTML DOM tree traversal and manipulation, as well as event handling, CSS animation, and Ajax.
+- [React Bootstrap](https://react-bootstrap.github.io/): An open-source CSS framework directed at responsive, mobile-first front-end web development.

@@ -87,7 +87,7 @@ class Dashboard extends Component {
 
     return (
       <>
-        <Navbar />
+        <Navbar page={"dashboard"} />
         <div className="Dashboard spacing">
           <Row className="dashboard-row">
             <Toast show={this.state.showToast} onClose={toggleToast}>

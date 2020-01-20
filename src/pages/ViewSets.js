@@ -109,7 +109,7 @@ class ViewSets extends Component {
     });
     return (
       <>
-        <Navbar />
+        <Navbar page={"sets"} />
         <div className="Profile spacing">
           <Row className="card-row">
             <h1 className="header-spacing">Sets</h1>
