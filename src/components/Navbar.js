@@ -4,8 +4,13 @@ import { Navbar, Nav, Image } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import icon from "../components/img/icon.png";
 import "../index.css";
+import $ from "jquery";
 
-const NavbarC = () => {
+const NavbarC = props => {
+  $("#" + props.page).css("color", "white");
+  $("#" + props.page).css("font-weight", "500");
+  if (props.page === "createPage") {
+  }
   // Function to log out current user
   const logOut = () => {
     Auth.signOut()
@@ -29,13 +34,13 @@ const NavbarC = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link className="navbar-link" to="/dashboard">
+            <Link className="navbar-link" to="/dashboard" id="dashboard">
               Dashboard
             </Link>
-            <Link className="navbar-link" to="/create">
+            <Link className="navbar-link" to="/create" id="createPage">
               Create
             </Link>
-            <Link className="navbar-link" to="/sets">
+            <Link className="navbar-link" to="/sets" id="sets">
               Sets
             </Link>
           </Nav>

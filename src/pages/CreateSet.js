@@ -20,13 +20,16 @@ class CreateSet extends Component {
     problems: data,
     currentPage: 1,
     problemsPerPage: 54,
-    set: []
+    set: [],
+    loaded: false
   };
   componentDidMount() {
     if (this.props.location.state === undefined) {
       this.props.history.push({ pathname: "/create" });
     }
-    console.log(this.props.location.state);
+    this.setState({
+      loaded: true
+    });
   }
   render() {
     // Variables below are used for pagination on the create set page
@@ -180,7 +183,7 @@ class CreateSet extends Component {
 
     return (
       <>
-        <Navbar />
+        <Navbar page={"createPage"} />
         <div className="CreateSet spacing">
           {/* Jumbotron displays the current user's set */}
           <div id="checkmark-div">

@@ -56,7 +56,7 @@ class ViewSet extends Component {
     }
     return (
       <>
-        <Navbar />
+        <Navbar page={"sets"} />
         <div className="ViewSet spacing">
           {this.props.location.state ? (
             <>

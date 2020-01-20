@@ -104,7 +104,7 @@ class ViewSet extends Component {
     };
     return (
       <>
-        <Navbar />
+        <Navbar page={"sets"} />
         <div className="ViewSetID spacing">
           <Jumbotron>
             <Row className="card-row">

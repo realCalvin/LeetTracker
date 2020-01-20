@@ -6,8 +6,14 @@ import { Row } from "react-bootstrap";
 import Navbar from "../components/Navbar";
 
 class CreatePage extends Component {
+  state = {
+    loaded: false
+  };
   componentDidMount() {
     $("#other-company").hide();
+    this.setState({
+      loaded: true
+    });
   }
   render() {
     const submitSet = e => {
@@ -49,7 +55,7 @@ class CreatePage extends Component {
     };
     return (
       <div>
-        <Navbar />
+        <Navbar page={"createPage"} />
         <Container className="spacing">
           <Row className="card-row">
             <h1 className="header-spacing">Create New Set</h1>

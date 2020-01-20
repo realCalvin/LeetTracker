@@ -514,7 +514,7 @@ code {
     display: none;
   }
   #landing-page2 {
-    height: 105vh;
+    min-height: 105vh;
     padding-top: 0px;
   }
   #landing-pic3 {

@@ -176,7 +176,7 @@ class UpdateSet extends Component {
     return (
       <>
         {" "}
-        <Navbar />
+        <Navbar page={"sets"} />
         <div className="CreateSet spacing">
           {/* Jumbotron displays the current user's set */}
           <div id="checkmark-div">
