@@ -1,5 +1,8 @@
 # LeetTracker
 
+Live Demo: https://master.d3i5xbbmcj6qbb.amplifyapp.com/
+---
+
 ## Table of Contents
 
 1. [Overview](#overview)
@@ -11,11 +14,11 @@
 
 ## Overview:
 
-Creating your set of LeetCode problems on an excel sheet is time consuming and hard to share with others. LeetTracker is a web application that allows users to easily create their own set or view/clone existing sets that other users have created. Users can track their progress on sets of problems and also share their LeetCode experience with others—via a sharable url.
+Creating your set of LeetCode problems on an excel sheet is time consuming and hard to share with others. LeetTracker is a web application that allows users to easily create their own set or view/clone existing sets that other users have created. Users can track their progress on sets of problems and also share their LeetCode experience with others—via a shareable url.
 
 The objective of LeetTracker is to easily share set of problems (targeted towards a company), track the user's progress, and easily add/delete/update a set of LeetCode problems.
 
-Live Website: https://master.d3i5xbbmcj6qbb.amplifyapp.com/
+Live Demo: https://master.d3i5xbbmcj6qbb.amplifyapp.com/
 
 ## Demo:
 
